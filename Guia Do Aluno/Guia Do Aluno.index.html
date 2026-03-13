@@ -1,0 +1,3104 @@
+<!DOCTYPE html>
+<html lang="pt-BR"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Guia Do Aluno - IF Sertão-PE</title>         
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> 
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+    
+    :root { 
+        --verde-floresta: #2C4A3B; 
+        --verde-claro: #4A6B57; 
+        --verde-escuro: #1E3528; 
+        --verde-fundo: #E8F0EA; 
+        --offwhite: #FAF7F2; 
+        --bege-claro: #F5F0E8; 
+        --bege-medio: #E8E0D5; 
+        --marrom-claro: #8B7A66; 
+        --marrom-escuro: #5E4B3A; 
+        --preto-suave: #2C2C2C; 
+        --sombra-suave: 0 10px 30px rgba(44, 74, 59, 0.08); 
+        --sombra-media: 0 10px 30px rgba(44, 74, 59, 0.15); 
+    } 
+    
+    * { 
+        margin: 0; 
+        padding: 0; 
+        box-sizing: border-box; 
+        font-family: 'Montserrat', sans-serif; 
+    } 
+    
+    html { 
+        scroll-behavior: smooth; 
+    } 
+    
+    body { 
+        background-color: var(--offwhite); 
+        color: var(--preto-suave); 
+        line-height: 1.6; 
+        overflow-x: hidden; 
+    } 
+    
+    header { 
+        position: fixed; 
+        top: 0; 
+        width: 100%; 
+        background: rgba(250, 247, 242, 0.95); 
+        backdrop-filter: blur(10px); 
+        padding: 15px 30px; 
+        z-index: 1000; 
+        display: flex; 
+        justify-content: space-between; 
+        align-items: center; 
+        border-bottom: 1px solid var(--bege-medio); 
+        box-shadow: var(--sombra-suave); 
+    } 
+    
+    .logo { 
+        font-size: 1.5rem; 
+        font-weight: 700; 
+        color: var(--verde-floresta); 
+        margin-left: 60px; 
+    } 
+    
+    .logo i { 
+        margin-right: 10px; 
+        color: var(--verde-floresta); 
+    } 
+    
+    .logo a { 
+        text-decoration: none; 
+        color: var(--verde-floresta); 
+        cursor: pointer;
+    } 
+    
+    .menu-toggle { 
+        position: absolute; 
+        left: 20px; 
+        top: 50%; 
+        transform: translateY(-50%); 
+        width: 40px; 
+        height: 40px; 
+        background: var(--bege-claro); 
+        border-radius: 10px; 
+        display: flex; 
+        flex-direction: column; 
+        justify-content: center; 
+        align-items: center; 
+        gap: 6px; 
+        cursor: pointer; 
+        z-index: 1001; 
+        border: 1px solid var(--bege-medio); 
+        transition: all 0.3s ease; 
+    } 
+    
+    .menu-toggle:hover { 
+        background: var(--verde-fundo); 
+        border-color: var(--verde-floresta); 
+    } 
+    
+    .menu-toggle span { 
+        width: 25px; 
+        height: 3px; 
+        background: var(--verde-floresta); 
+        border-radius: 3px; 
+        transition: all 0.3s ease; 
+    } 
+    
+    .menu-toggle.ativo span:nth-child(1) { 
+        transform: rotate(45deg) translate(7px, 7px); 
+    } 
+    
+    .menu-toggle.ativo span:nth-child(2) { 
+        opacity: 0; 
+    } 
+    
+    .menu-toggle.ativo span:nth-child(3) { 
+        transform: rotate(-45deg) translate(7px, -7px); 
+    } 
+    
+    .menu-lateral { 
+        position: fixed; 
+        top: 0; 
+        left: -300px; 
+        width: 300px; 
+        height: 100vh; 
+        background: var(--offwhite); 
+        z-index: 999; 
+        padding: 80px 20px 30px; 
+        box-shadow: 2px 0 10px rgba(0,0,0,0.1); 
+        transition: left 0.3s ease; 
+        overflow-y: auto; 
+        border-right: 1px solid var(--bege-medio); 
+    } 
+    
+    .menu-lateral.ativo { 
+        left: 0; 
+    } 
+    
+    .menu-lateral h3 { 
+        color: var(--verde-floresta); 
+        margin-bottom: 20px; 
+        padding-bottom: 10px; 
+        border-bottom: 2px solid var(--bege-medio); 
+        font-size: 1.3rem; 
+    } 
+    
+    .menu-lateral .setor-menu { 
+        display: block; 
+        padding: 12px 15px; 
+        color: var(--marrom-escuro); 
+        text-decoration: none; 
+        border-radius: 10px; 
+        margin-bottom: 5px; 
+        transition: all 0.3s ease; 
+        font-weight: 500; 
+        border-left: 3px solid transparent; 
+        cursor: pointer;
+    } 
+    
+    .menu-lateral .setor-menu:hover { 
+        background: var(--bege-claro); 
+        border-left-color: var(--verde-floresta); 
+        color: var(--verde-floresta); 
+        padding-left: 20px; 
+    } 
+    
+    .menu-lateral .setor-menu i { 
+        width: 25px; 
+        color: var(--verde-floresta); 
+        margin-right: 10px; 
+    } 
+    
+    .overlay { 
+        position: fixed; 
+        top: 0; 
+        left: 0; 
+        width: 100%; 
+        height: 100%; 
+        background: rgba(0,0,0,0.5); 
+        z-index: 998; 
+        display: none; 
+    } 
+    
+    .overlay.ativo { 
+        display: block; 
+    } 
+    
+    .container { 
+        width: 90%; 
+        max-width: 1200px; 
+        margin: 0 auto; 
+        padding: 0 20px; 
+    } 
+
+    .hero { 
+        min-height: 100vh; 
+        background: linear-gradient(135deg, var(--offwhite) 0%, var(--bege-claro) 100%); 
+        display: flex; 
+        flex-direction: column; 
+        justify-content: center; 
+        align-items: center; 
+        text-align: center; 
+        padding: 0 20px; 
+        position: relative; 
+        overflow: hidden; 
+        padding-top: 80px; 
+    } 
+    
+    .hero h1 { 
+        font-size: 4.5rem; 
+        font-weight: 800; 
+        margin: 0; 
+        color: var(--preto-suave); 
+        animation: slideUp 1.5s ease; 
+        position: relative; 
+        z-index: 2; 
+    } 
+    
+    .hero h1 span { 
+        color: var(--verde-floresta); 
+    } 
+    
+    .hero p { 
+        max-width: 700px; 
+        margin-top: 25px; 
+        font-weight: 400; 
+        font-size: 1.4rem; 
+        animation: fadeIn 2s ease; 
+        color: var(--marrom-claro); 
+        position: relative; 
+        z-index: 2; 
+    } 
+    
+    .hero .destaque { 
+        color: var(--verde-floresta); 
+        font-weight: 600; 
+        margin-top: 20px; 
+        font-size: 1.3rem; 
+        background: var(--bege-claro); 
+        padding: 10px 30px; 
+        border-radius: 50px; 
+        display: inline-block; 
+        border: 1px solid var(--bege-medio); 
+    } 
+    
+    @keyframes fadeIn { 
+        from { opacity: 0; } 
+        to { opacity: 1; } 
+    } 
+    
+    @keyframes slideUp { 
+        from { transform: translateY(40px); opacity: 0; } 
+        to { transform: translateY(0); opacity: 1; } 
+    } 
+
+    .section { 
+        padding: 80px 30px; 
+        position: relative; 
+    } 
+    
+    .section:nth-child(even) { 
+        background-color: var(--offwhite); 
+    } 
+    
+    .section:nth-child(odd) { 
+        background-color: var(--bege-claro); 
+    } 
+    
+    .section-title { 
+        text-align: center; 
+        margin-bottom: 3rem; 
+        position: relative; 
+    } 
+    
+    .section-title h2 { 
+        font-size: 2.5rem; 
+        font-weight: 700; 
+        color: var(--preto-suave); 
+        margin-bottom: 15px; 
+        position: relative; 
+        display: inline-block; 
+    } 
+    
+    .section-title h2::after { 
+        content: ""; 
+        position: absolute; 
+        bottom: -10px; 
+        left: 50%; 
+        transform: translateX(-50%); 
+        width: 80px; 
+        height: 3px; 
+        background: linear-gradient(to right, transparent, var(--verde-floresta), transparent); 
+    } 
+
+    
+    .info-cards { 
+        display: grid; 
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+        gap: 30px; 
+        margin-top: 40px; 
+    } 
+    
+    .info-card { 
+        background: var(--offwhite); 
+        padding: 40px 20px; 
+        border-radius: 20px; 
+        text-align: center; 
+        box-shadow: var(--sombra-suave); 
+        border: 1px solid var(--bege-medio); 
+        transition: all 0.3s ease; 
+    } 
+    
+    .info-card:hover { 
+        transform: translateY(-5px); 
+        border-color: var(--verde-floresta); 
+        box-shadow: var(--sombra-media); 
+    } 
+    
+    .info-card i { 
+        font-size: 3.5rem; 
+        color: var(--verde-floresta); 
+        margin-bottom: 20px; 
+    } 
+    
+    .info-card h3 { 
+        color: var(--preto-suave); 
+        margin-bottom: 15px; 
+        font-size: 1.5rem; 
+    } 
+    
+    .info-card p { 
+        color: var(--marrom-claro); 
+        font-size: 1rem; 
+        line-height: 1.6; 
+    } 
+    
+
+    .guia-grid { 
+        display: grid; 
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+        gap: 25px; 
+        margin-top: 40px; 
+    } 
+    
+    .guia-item { 
+        background: var(--offwhite); 
+        padding: 25px; 
+        border-radius: 15px; 
+        display: flex; 
+        align-items: center; 
+        gap: 20px; 
+        border: 1px solid var(--bege-medio); 
+        transition: all 0.3s ease; 
+    } 
+    
+    .guia-item:hover { 
+        border-color: var(--verde-floresta); 
+        background: var(--bege-claro); 
+        transform: translateX(5px); 
+    } 
+    
+    .guia-icon { 
+        width: 60px; 
+        height: 60px; 
+        background: var(--verde-fundo); 
+        border-radius: 12px; 
+        display: flex; 
+        align-items: center; 
+        justify-content: center; 
+        border: 2px solid var(--verde-floresta); 
+    } 
+    
+    .guia-icon i { 
+        font-size: 2rem; 
+        color: var(--verde-floresta); 
+    } 
+    
+    .guia-text h4 { 
+        color: var(--preto-suave); 
+        font-size: 1.2rem; 
+        margin-bottom: 5px; 
+    } 
+    
+    .guia-text p { 
+        color: var(--marrom-claro); 
+        font-size: 0.95rem; 
+    } 
+    
+
+    .setores-home { 
+        display: grid; 
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+        gap: 20px; 
+        margin-top: 40px; 
+    } 
+    
+    .setor-home-card { 
+        background: var(--offwhite); 
+        padding: 25px; 
+        border-radius: 15px; 
+        text-decoration: none; 
+        color: inherit; 
+        border: 1px solid var(--bege-medio); 
+        transition: all 0.3s ease; 
+        display: flex; 
+        align-items: center; 
+        gap: 20px; 
+        cursor: pointer;
+    } 
+    
+    .setor-home-card:hover { 
+        transform: translateY(-5px); 
+        border-color: var(--verde-floresta); 
+        box-shadow: var(--sombra-media); 
+    } 
+    
+    .setor-home-icon { 
+        width: 70px; 
+        height: 70px; 
+        background: var(--verde-fundo); 
+        border-radius: 15px; 
+        display: flex; 
+        align-items: center; 
+        justify-content: center; 
+        border: 2px solid var(--verde-floresta); 
+    } 
+    
+    .setor-home-icon i { 
+        font-size: 2.2rem; 
+        color: var(--verde-floresta); 
+    } 
+    
+    .setor-home-info h3 { 
+        color: var(--verde-floresta); 
+        font-size: 1.3rem; 
+        margin-bottom: 5px; 
+    } 
+    
+    .setor-home-info p { 
+        color: var(--marrom-claro); 
+        font-size: 0.95rem; 
+    } 
+    
+
+    .setor-container { 
+        display: none; 
+        padding-top: 100px; 
+        min-height: 100vh; 
+    } 
+    
+    .setor-container.ativo { 
+        display: block; 
+    } 
+    
+    .voltar-home {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--verde-floresta);
+        text-decoration: none;
+        font-weight: 600;
+        margin-bottom: 30px;
+        padding: 10px 20px;
+        background: var(--bege-claro);
+        border-radius: 10px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        border: none;
+        font-size: 1rem;
+    }
+    
+    .voltar-home:hover {
+        background: var(--verde-floresta);
+        color: var(--offwhite);
+    }
+    
+    .setor-card-detalhado {
+        background: var(--offwhite);
+        border-radius: 30px;
+        padding: 40px;
+        box-shadow: var(--sombra-media);
+        border: 1px solid var(--bege-medio);
+        margin-bottom: 30px;
+    }
+    
+    .setor-titulo-detalhado {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        margin-bottom: 30px;
+        padding-bottom: 20px;
+        border-bottom: 2px solid var(--bege-medio);
+    }
+    
+    .setor-titulo-detalhado .icone-grande {
+        width: 80px;
+        height: 80px;
+        background: var(--verde-fundo);
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 3px solid var(--verde-floresta);
+    }
+    
+    .setor-titulo-detalhado .icone-grande i {
+        font-size: 3rem;
+        color: var(--verde-floresta);
+    }
+    
+    .setor-titulo-detalhado h1 {
+        font-size: 2.5rem;
+        color: var(--preto-suave);
+    }
+    
+    .setor-titulo-detalhado p {
+        color: var(--marrom-claro);
+        font-size: 1.1rem;
+    }
+    
+    .setor-info {
+        margin-top: 20px;
+    }
+    
+    .info-item {
+        margin-bottom: 25px;
+        padding: 15px;
+        background: var(--bege-claro);
+        border-radius: 15px;
+    }
+    
+    .info-item h4 {
+        color: var(--verde-floresta);
+        font-size: 1.1rem;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    
+    .info-item h4 i {
+        font-size: 1rem;
+    }
+    
+    .info-item p {
+        color: var(--marrom-escuro);
+        font-size: 0.95rem;
+        line-height: 1.5;
+        margin-left: 25px;
+    }
+    
+    .info-item ul {
+        list-style: none;
+        margin-left: 25px;
+    }
+    
+    .info-item ul li {
+        color: var(--marrom-escuro);
+        font-size: 0.95rem;
+        margin-bottom: 5px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    
+    .info-item ul li i {
+        color: var(--verde-floresta);
+        width: 16px;
+        font-size: 0.8rem;
+    }
+    
+    .horario-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 10px;
+        margin-top: 10px;
+    }
+    
+    .horario-bloco {
+        background: var(--offwhite);
+        padding: 8px;
+        border-radius: 8px;
+        text-align: center;
+        border: 1px solid var(--bege-medio);
+    }
+    
+    .horario-bloco strong {
+        color: var(--verde-floresta);
+        display: block;
+        margin-bottom: 5px;
+        font-size: 0.9rem;
+    }
+    
+    .horario-bloco span {
+        color: var(--marrom-escuro);
+        font-size: 0.85rem;
+    }
+    
+    .contato-botoes-mini {
+        display: flex;
+        gap: 8px;
+        margin-top: 8px;
+    }
+    
+    .contato-btn-mini {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--verde-floresta);
+        padding: 6px 12px;
+        border-radius: 20px;
+        text-decoration: none;
+        font-weight: 500;
+        color: var(--offwhite);
+        transition: 0.3s;
+        font-size: 0.8rem;
+        gap: 5px;
+        width: fit-content;
+    }
+    
+    .contato-btn-mini:hover {
+        background: var(--verde-escuro);
+        transform: translateY(-2px);
+        box-shadow: var(--sombra-media);
+    }
+    
+    .contato-btn-mini.whatsapp {
+        background: #25D366;
+    }
+    
+    .contato-btn-mini.whatsapp:hover {
+        background: #128C7E;
+    }
+    
+    .contato-btn-mini.email {
+        background: #EA4335;
+    }
+    
+    .contato-btn-mini.email:hover {
+        background: #B23121;
+    }
+    
+    .contato-botoes {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 15px;
+    }
+    
+    .contato-btn {
+        display: inline-flex;
+        align-items: center;
+        background: var(--verde-floresta);
+        padding: 10px 15px;
+        border-radius: 10px;
+        text-decoration: none;
+        font-weight: 500;
+        color: var(--offwhite);
+        transition: 0.3s;
+        font-size: 0.9rem;
+        gap: 8px;
+        flex: 1;
+        justify-content: center;
+    }
+    
+    .contato-btn:hover {
+        background: var(--verde-escuro);
+        transform: translateY(-2px);
+        box-shadow: var(--sombra-media);
+    }
+    
+    .contato-btn.whatsapp {
+        background: #25D366;
+    }
+    
+    .contato-btn.whatsapp:hover {
+        background: #128C7E;
+    }
+    
+    .contato-btn.email {
+        background: #EA4335;
+    }
+    
+    .contato-btn.email:hover {
+        background: #B23121;
+    }
+
+
+    .pagina-inicial { 
+        display: block; 
+    } 
+    
+    .pagina-inicial.escondido { 
+        display: none; 
+    } 
+    
+    /* Cards de Destaque para Links Importantes */
+    .destaque-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        margin-top: 40px;
+    }
+    
+    .destaque-card {
+        background: var(--offwhite);
+        padding: 30px;
+        border-radius: 20px;
+        text-align: center;
+        box-shadow: var(--sombra-media);
+        border: 2px solid var(--verde-floresta);
+        transition: all 0.3s ease;
+        text-decoration: none;
+        color: inherit;
+        display: block;
+        cursor: pointer;
+    }
+    
+    .destaque-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(44, 74, 59, 0.2);
+        background: var(--verde-fundo);
+    }
+    
+    .destaque-card i {
+        font-size: 4rem;
+        color: var(--verde-floresta);
+        margin-bottom: 20px;
+    }
+    
+    .destaque-card h3 {
+        color: var(--verde-floresta);
+        font-size: 1.8rem;
+        margin-bottom: 15px;
+    }
+    
+    .destaque-card p {
+        color: var(--marrom-escuro);
+        font-size: 1.1rem;
+        line-height: 1.6;
+    }
+    
+    .destaque-card .badge {
+        background: var(--verde-floresta);
+        color: var(--offwhite);
+        padding: 8px 20px;
+        border-radius: 50px;
+        display: inline-block;
+        margin-top: 20px;
+        font-weight: 600;
+        font-size: 1rem;
+    }
+    
+    /* Texto de Boas-Vindas */
+    .welcome-text {
+        background: var(--offwhite);
+        padding: 50px;
+        border-radius: 30px;
+        box-shadow: var(--sombra-media);
+        border: 1px solid var(--bege-medio);
+        margin-top: 40px;
+    }
+    
+    .welcome-text p {
+        font-size: 1.2rem;
+        line-height: 1.8;
+        color: var(--marrom-escuro);
+        margin-bottom: 20px;
+    }
+    
+    .welcome-text p:last-child {
+        margin-bottom: 0;
+    }
+    
+    .welcome-text .highlight {
+        color: var(--verde-floresta);
+        font-weight: 600;
+    }
+    
+    /* Seção da Planta da Escola - Estilo Card */
+    .planta-cards {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 30px;
+        margin-top: 40px;
+    }
+    
+    .planta-card {
+        background: var(--offwhite);
+        padding: 40px;
+        border-radius: 20px;
+        text-align: center;
+        box-shadow: var(--sombra-media);
+        border: 2px solid var(--verde-floresta);
+        transition: all 0.3s ease;
+        text-decoration: none;
+        color: inherit;
+        display: block;
+    }
+    
+    .planta-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(44, 74, 59, 0.2);
+        background: var(--verde-fundo);
+    }
+    
+    .planta-card i {
+        font-size: 5rem;
+        color: var(--verde-floresta);
+        margin-bottom: 20px;
+    }
+    
+    .planta-card h3 {
+        color: var(--verde-floresta);
+        font-size: 2rem;
+        margin-bottom: 15px;
+    }
+    
+    .planta-card p {
+        color: var(--marrom-escuro);
+        font-size: 1.2rem;
+        line-height: 1.6;
+        margin-bottom: 30px;
+    }
+    
+    .planta-card .badge {
+        background: var(--verde-floresta);
+        color: var(--offwhite);
+        padding: 12px 30px;
+        border-radius: 50px;
+        display: inline-block;
+        font-weight: 600;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+    }
+    
+    .planta-card:hover .badge {
+        background: var(--verde-escuro);
+        transform: scale(1.05);
+    }
+    
+    /* SEÇÃO DE DÚVIDAS FREQUENTES - Estilo Acordeão */
+    .faq-container { 
+        max-width: 800px; 
+        margin: 0 auto; 
+    } 
+    
+    .faq-item { 
+        background: var(--offwhite); 
+        border-radius: 15px; 
+        margin-bottom: 15px; 
+        border: 1px solid var(--bege-medio); 
+        overflow: hidden; 
+        box-shadow: var(--sombra-suave);
+        transition: all 0.3s ease;
+    } 
+    
+    .faq-item:hover {
+        border-color: var(--verde-floresta);
+        box-shadow: var(--sombra-media);
+    }
+    
+    .faq-pergunta { 
+        padding: 20px 25px; 
+        display: flex; 
+        justify-content: space-between; 
+        align-items: center; 
+        cursor: pointer; 
+        font-weight: 600; 
+        color: var(--verde-floresta); 
+        transition: 0.3s; 
+    } 
+    
+    .faq-pergunta:hover { 
+        background: var(--bege-claro); 
+    } 
+    
+    .faq-pergunta i { 
+        transition: transform 0.3s ease; 
+        color: var(--verde-floresta); 
+        font-size: 1.2rem;
+    } 
+    
+    .faq-pergunta.ativo i { 
+        transform: rotate(180deg); 
+    } 
+    
+    .faq-resposta { 
+        padding: 0 25px; 
+        max-height: 0; 
+        overflow: hidden; 
+        transition: all 0.3s ease; 
+        color: var(--marrom-escuro); 
+        border-top: 0px solid transparent; 
+    } 
+    
+    .faq-resposta.ativo { 
+        padding: 0 25px 20px 25px; 
+        max-height: 1500px; 
+        border-top: 1px solid var(--bege-medio); 
+    } 
+
+    .faq-resposta p {
+        margin-bottom: 15px;
+        line-height: 1.8;
+    }
+
+    .faq-resposta p:last-child {
+        margin-bottom: 0;
+    }
+
+    .faq-resposta .destaque {
+        background: var(--verde-fundo);
+        border-left: 4px solid var(--verde-floresta);
+        padding: 15px 20px;
+        border-radius: 10px;
+        margin: 20px 0;
+        font-weight: 500;
+    }
+
+    /* Caixinha do SUAP dentro do FAQ */
+    .suap-card { 
+        background: linear-gradient(135deg, var(--verde-floresta), var(--verde-escuro)); 
+        color: var(--offwhite); 
+        border-radius: 20px; 
+        padding: 30px; 
+        margin-top: 20px; 
+        box-shadow: var(--sombra-media); 
+        border: 2px solid var(--bege-medio); 
+    } 
+    
+    .suap-card h4 { 
+        font-size: 2rem; 
+        margin-bottom: 20px; 
+        display: flex; 
+        align-items: center; 
+        gap: 15px; 
+        color: var(--offwhite); 
+    } 
+    
+    .suap-card h4 i { 
+        font-size: 2.5rem; 
+    } 
+    
+    .suap-card .login-box { 
+        background: rgba(255, 255, 255, 0.1); 
+        padding: 25px; 
+        border-radius: 15px; 
+        backdrop-filter: blur(5px); 
+        border: 1px solid rgba(255, 255, 255, 0.2); 
+    } 
+    
+    .suap-card .login-box p { 
+        color: var(--offwhite); 
+        margin-bottom: 15px; 
+        font-size: 1.1rem; 
+    } 
+    
+    .suap-card .login-box strong { 
+        color: var(--bege-claro); 
+        font-weight: 700; 
+    } 
+    
+    .suap-card .login-box .exemplo { 
+        background: rgba(0, 0, 0, 0.2); 
+        padding: 15px; 
+        border-radius: 10px; 
+        margin-top: 15px; 
+        font-family: monospace; 
+        font-size: 1.1rem; 
+        border: 1px solid rgba(255, 255, 255, 0.2); 
+    } 
+    
+    .suap-card .login-box i { 
+        margin-right: 10px; 
+        color: var(--bege-claro); 
+    } 
+    
+    .suap-card .botao-acessar { 
+        background: var(--offwhite); 
+        color: var(--verde-floresta); 
+        border: none; 
+        padding: 15px 40px; 
+        border-radius: 50px; 
+        font-weight: 700; 
+        font-size: 1.2rem; 
+        cursor: pointer; 
+        transition: all 0.3s ease; 
+        margin-top: 20px; 
+        display: inline-block; 
+        text-decoration: none; 
+    } 
+    
+    .suap-card .botao-acessar:hover { 
+        background: var(--bege-claro); 
+        transform: scale(1.05); 
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); 
+    }
+ 
+    footer { 
+        background: linear-gradient(135deg, var(--verde-floresta), var(--verde-escuro)); 
+        color: var(--offwhite); 
+        padding: 4rem 0 2rem; 
+        text-align: center; 
+        position: relative; 
+        overflow: hidden; 
+        margin-top: 50px;
+    } 
+    
+    .footer-content { 
+        display: flex; 
+        flex-wrap: wrap; 
+        justify-content: space-between; 
+        margin-bottom: 2rem; 
+        position: relative; 
+        z-index: 1; 
+        max-width: 1200px; 
+        margin-left: auto; 
+        margin-right: auto; 
+        padding: 0 20px; 
+    } 
+    
+    .footer-section { 
+        flex: 1; 
+        min-width: 250px; 
+        margin-bottom: 2rem; 
+    } 
+    
+    .footer-section h3 { 
+        color: var(--bege-medio); 
+        margin-bottom: 1.2rem; 
+        font-size: 1.3rem; 
+    } 
+    
+    .footer-section p, .footer-section a { 
+        color: var(--bege-claro); 
+        margin-bottom: 0.8rem; 
+        display: block; 
+        text-decoration: none; 
+        transition: color 0.3s ease; 
+        font-size: 1rem; 
+    } 
+    
+    .footer-section a:hover { 
+        color: var(--offwhite); 
+    } 
+    
+    .footer-section a i { 
+        margin-right: 8px; 
+        width: 20px; 
+    } 
+    
+    .copyright { 
+        padding-top: 2rem; 
+        border-top: 1px solid var(--verde-claro); 
+        color: var(--bege-claro); 
+        font-size: 0.95rem; 
+        max-width: 1200px; 
+        margin: 0 auto; 
+        padding-left: 20px; 
+        padding-right: 20px; 
+    } 
+    
+    /* RESPONSIVIDADE - Tablet (768px - 992px) */
+    @media (min-width: 768px) and (max-width: 992px) {
+        .hero h1 {
+            font-size: 3.5rem;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.2rem;
+        }
+        
+        .setor-card-detalhado {
+            padding: 30px;
+        }
+        
+        .horario-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        
+        .destaque-cards {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+    
+    /* RESPONSIVIDADE - Celular (até 768px) */
+    @media (max-width: 768px) {
+        header {
+            padding: 12px 15px;
+        }
+        
+        .logo {
+            font-size: 1.1rem;
+            margin-left: 45px;
+        }
+        
+        .menu-toggle {
+            width: 35px;
+            height: 35px;
+            left: 15px;
+        }
+        
+        .menu-toggle span {
+            width: 20px;
+        }
+        
+        .hero {
+            padding: 0 15px;
+            min-height: 90vh;
+        }
+        
+        .hero h1 {
+            font-size: 2.2rem;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.1rem;
+            margin-top: 15px;
+            line-height: 1.5;
+        }
+        
+        .hero .destaque {
+            font-size: 1rem;
+            padding: 8px 20px;
+        }
+        
+        .section {
+            padding: 50px 15px;
+        }
+        
+        .section-title h2 {
+            font-size: 1.8rem;
+        }
+        
+        .section-title h2::after {
+            width: 60px;
+        }
+        
+        .welcome-text {
+            padding: 30px;
+        }
+        
+        .welcome-text p {
+            font-size: 1rem;
+        }
+        
+        .info-cards {
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .info-card {
+            padding: 30px 15px;
+        }
+        
+        .info-card i {
+            font-size: 3rem;
+        }
+        
+        .info-card h3 {
+            font-size: 1.3rem;
+        }
+        
+        .destaque-cards {
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        
+        .destaque-card {
+            padding: 25px;
+        }
+        
+        .destaque-card i {
+            font-size: 3.5rem;
+        }
+        
+        .destaque-card h3 {
+            font-size: 1.5rem;
+        }
+        
+        .destaque-card p {
+            font-size: 1rem;
+        }
+        
+        .planta-card {
+            padding: 30px;
+        }
+        
+        .planta-card i {
+            font-size: 4rem;
+        }
+        
+        .planta-card h3 {
+            font-size: 1.5rem;
+        }
+        
+        .planta-card p {
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+        
+        .planta-card .badge {
+            padding: 10px 25px;
+            font-size: 1rem;
+        }
+        
+        .guia-grid {
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .guia-item {
+            padding: 15px;
+            gap: 15px;
+        }
+        
+        .guia-icon {
+            width: 50px;
+            height: 50px;
+        }
+        
+        .guia-icon i {
+            font-size: 1.5rem;
+        }
+        
+        .guia-text h4 {
+            font-size: 1rem;
+        }
+        
+        .guia-text p {
+            font-size: 0.85rem;
+        }
+        
+        .setores-home {
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .setor-home-card {
+            padding: 15px;
+        }
+        
+        .setor-home-icon {
+            width: 50px;
+            height: 50px;
+        }
+        
+        .setor-home-icon i {
+            font-size: 1.5rem;
+        }
+        
+        .setor-home-info h3 {
+            font-size: 1.1rem;
+        }
+        
+        .setor-home-info p {
+            font-size: 0.85rem;
+        }
+        
+        .setor-card-detalhado {
+            padding: 20px;
+        }
+        
+        .setor-titulo-detalhado {
+            flex-direction: column;
+            text-align: center;
+            gap: 15px;
+        }
+        
+        .setor-titulo-detalhado .icone-grande {
+            width: 60px;
+            height: 60px;
+        }
+        
+        .setor-titulo-detalhado .icone-grande i {
+            font-size: 2rem;
+        }
+        
+        .setor-titulo-detalhado h1 {
+            font-size: 1.8rem;
+        }
+        
+        .setor-titulo-detalhado p {
+            font-size: 1rem;
+        }
+        
+        .horario-grid {
+            grid-template-columns: 1fr;
+            gap: 8px;
+        }
+        
+        .horario-bloco {
+            padding: 10px;
+        }
+        
+        .horario-bloco strong {
+            font-size: 0.9rem;
+        }
+        
+        .horario-bloco span {
+            font-size: 0.85rem;
+        }
+        
+        .contato-botoes-mini {
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .contato-btn-mini {
+            font-size: 0.7rem;
+            padding: 4px 8px;
+        }
+        
+        .contato-botoes {
+            flex-direction: column;
+        }
+        
+        .contato-btn {
+            width: 100%;
+            padding: 8px 12px;
+            font-size: 0.85rem;
+        }
+        
+        .faq-pergunta {
+            padding: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .faq-resposta.ativo {
+            padding: 0 15px 15px 15px;
+        }
+        
+        .faq-resposta p {
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        
+        .suap-card {
+            padding: 20px;
+        }
+        
+        .suap-card h4 {
+            font-size: 1.2rem;
+            flex-direction: column;
+            text-align: center;
+            gap: 5px;
+        }
+        
+        .suap-card .login-box {
+            padding: 15px;
+        }
+        
+        .suap-card .login-box p {
+            font-size: 0.9rem;
+        }
+        
+        .suap-card .botao-acessar {
+            padding: 10px 20px;
+            font-size: 1rem;
+        }
+        
+        footer {
+            padding: 2rem 0 1rem;
+        }
+        
+        .footer-content {
+            flex-direction: column;
+            text-align: center;
+            gap: 20px;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-section p, .footer-section a {
+            font-size: 0.9rem;
+        }
+        
+        .copyright {
+            font-size: 0.8rem;
+            padding-top: 1rem;
+        }
+    }
+    
+    /* RESPONSIVIDADE - Celular pequeno (até 480px) */
+    @media (max-width: 480px) {
+        .hero h1 {
+            font-size: 1.8rem;
+        }
+        
+        .hero p {
+            font-size: 1rem;
+        }
+        
+        .section-title h2 {
+            font-size: 1.5rem;
+        }
+        
+        .setor-titulo-detalhado h1 {
+            font-size: 1.5rem;
+        }
+        
+        .info-card i {
+            font-size: 2.5rem;
+        }
+        
+        .destaque-card i {
+            font-size: 2.5rem;
+        }
+        
+        .destaque-card h3 {
+            font-size: 1.3rem;
+        }
+        
+        .planta-card {
+            padding: 20px;
+        }
+        
+        .planta-card i {
+            font-size: 3rem;
+        }
+        
+        .planta-card h3 {
+            font-size: 1.3rem;
+        }
+        
+        .planta-card p {
+            font-size: 0.9rem;
+        }
+        
+        .planta-card .badge {
+            padding: 8px 20px;
+            font-size: 0.9rem;
+        }
+    }
+    
+    /* RESPONSIVIDADE - Celular muito pequeno (até 360px) */
+    @media (max-width: 360px) {
+        .hero h1 {
+            font-size: 1.5rem;
+        }
+        
+        .hero p {
+            font-size: 0.9rem;
+        }
+        
+        .destaque-card h3 {
+            font-size: 1.2rem;
+        }
+        
+        .planta-card h3 {
+            font-size: 1.2rem;
+        }
+        
+        .guia-item {
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        .setor-home-card {
+            flex-direction: column;
+            text-align: center;
+        }
+    }
+    </style>         
+</head>     
+<body> 
+    <!-- Header com Menu Hambúrguer -->         
+    <header> 
+        <div class="menu-toggle" id="menuToggle"> 
+            <span></span> 
+            <span></span> 
+            <span></span> 
+        </div>             
+        <div class="logo"> 
+            <a id="logoHome"><i class="fas fa-graduation-cap"></i> Guia Do Aluno</a> 
+        </div>             
+    </header>         
+    
+    <!-- Menu Lateral -->         
+    <div class="menu-lateral" id="menuLateral"> 
+        <h3><i class="fas fa-map-signs"></i> Setores</h3> 
+        <a class="setor-menu" data-setor="inicio"><i class="fas fa-home"></i> Início</a> 
+        <a class="setor-menu" data-setor="cca"><i class="fas fa-address-card"></i> CCA - Controle Acadêmico</a> 
+        <a class="setor-menu" data-setor="cpae"><i class="fas fa-hands-helping"></i> CPAE - Assistência Estudantil</a> 
+        <a class="setor-menu" data-setor="saude"><i class="fas fa-heartbeat"></i> Assistência à Saúde</a> 
+        <a class="setor-menu" data-setor="dap"><i class="fas fa-chart-line"></i> DAP - Administração</a> 
+        <a class="setor-menu" data-setor="aee"><i class="fas fa-universal-access"></i> AEE/NAPNE - Inclusão</a> 
+        <a class="setor-menu" data-setor="contabilidade"><i class="fas fa-file-invoice-dollar"></i> Contabilidade/Contratos</a> 
+        <a class="setor-menu" data-setor="ti"><i class="fas fa-laptop"></i> TI - Tecnologia</a> 
+        <a class="setor-menu" data-setor="pesquisa"><i class="fas fa-flask"></i> Pesquisa e Extensão</a> 
+        <a class="setor-menu" data-setor="nupe"><i class="fas fa-chalkboard-teacher"></i> NuPe - Núcleo Pedagógico</a> 
+        <a class="setor-menu" data-setor="quimica"><i class="fas fa-flask"></i> Licenciatura em Química</a> 
+        <a class="setor-menu" data-setor="den"><i class="fas fa-school"></i> DEN - Departamento de Ensino</a> 
+        <a class="setor-menu" data-setor="cgp"><i class="fas fa-users-cog"></i> CGP - Gestão de Pessoas</a>
+        <a class="setor-menu" data-setor="gabinete"><i class="fas fa-user-tie"></i> Coordenação de Gabinete</a>
+        <a class="setor-menu" data-setor="sae"><i class="fas fa-hands-helping"></i> SAE - Assistência ao Educando</a>
+        <a class="setor-menu" data-setor="reprografia"><i class="fas fa-print"></i> Repografia</a>
+        <a class="setor-menu" data-setor="tecnicos"><i class="fas fa-flask"></i> Sala de Técnicos</a>
+        <a class="setor-menu" data-setor="ccev"><i class="fas fa-bullhorn"></i> CCEV - Comunicação e Eventos</a>
+        <a class="setor-menu" data-setor="coordenacoes"><i class="fas fa-chalkboard"></i> Coordenações de Cursos</a>
+        <a class="setor-menu" data-setor="biblioteca"><i class="fas fa-book"></i> Biblioteca</a>
+        <a class="setor-menu" data-setor="onibus"><i class="fas fa-bus"></i> Ônibus Escolar</a>
+    </div>         
+    <div class="overlay" id="overlay"></div>         
+    
+    <!-- PÁGINA INICIAL -->         
+    <div id="paginaInicial" class="pagina-inicial"> 
+        <!-- Hero Section -->         
+        <section class="hero"> 
+            <h1>Guia Do <span>Aluno</span></h1> 
+            <p>Bem-vindo ao IF Sertão-PE! Este guia foi criado para ajudar você a se localizar e conhecer todos os setores da nossa instituição.</p> 
+            <div class="destaque"> 
+                <i class="fas fa-map-signs"></i> 
+            </div> 
+        </section>         
+        
+        <!-- Texto de Boas-Vindas -->         
+        <section class="section"> 
+            <div class="container"> 
+                <div class="welcome-text"> 
+                    <p><span class="highlight">Seja muito bem-vindo(a)!</span></p> 
+                    <p>Este manual foi criado especialmente para ajudar você a se adaptar à nova rotina escolar com mais segurança e tranquilidade. Sabemos que começar em um novo ambiente pode gerar dúvidas, expectativas e até um pouco de insegurança — e é exatamente por isso que este guia existe.</p> 
+                    <p>Aqui você encontrará informações importantes sobre o funcionamento da escola, horários, regras, localização dos setores, orientações acadêmicas e dicas essenciais para facilitar sua integração.</p> 
+                    <p>Nosso objetivo é tornar essa nova etapa mais simples, organizada e acolhedora para você. Sempre que surgir uma dúvida, consulte este manual. Ele foi pensado para ser seu ponto de apoio durante essa jornada.</p> 
+                    <p>Esperamos que você tenha uma excelente experiência e aproveite ao máximo tudo o que a escola tem a oferecer!</p> 
+                </div>                 
+            </div>             
+        </section>         
+        
+        <!-- Seção de Informações Importantes -->         
+        <section class="section"> 
+            <div class="container"> 
+                <div class="section-title"> 
+                    <h2>Informações Importantes</h2> 
+                </div>                 
+                <div class="destaque-cards"> 
+                    <a href="https://ifsertaope.edu.br/ouvidoria/" target="_blank" class="destaque-card"> 
+                        <i class="fas fa-comment-dots"></i> 
+                        <h3>Ouvidoria</h3> 
+                        <p>Fale com a gente! A Ouvidoria é o canal oficial para sugestões, elogios, reclamações e denúncias.</p> 
+                        <span class="badge">Acessar</span> 
+                    </a>                     
+                    <a href="https://acrobat.adobe.com/id/urn:aaid:sc:VA6C2:72352ceb-4e02-45d8-a3af-1d73d04c0e83" target="_blank" class="destaque-card"> 
+                        <i class="fas fa-gavel"></i> 
+                        <h3>Regulamento Discente</h3> 
+                        <p>Conheça seus direitos, deveres e as regras de convivência do IF Sertão-PE.</p> 
+                        <span class="badge">Ler documento</span> 
+                    </a>
+                    <div class="destaque-card" data-setor="onibus"> 
+                        <i class="fas fa-bus"></i> 
+                        <h3>Ônibus Escolar</h3> 
+                        <p>Confira os horários e itinerários do transporte escolar. Acompanhe a localização em tempo real!</p> 
+                        <span class="badge">Ver horários</span> 
+                    </div>                     
+                </div>                 
+            </div>             
+        </section>         
+        
+        <!-- Seção da Planta da Escola -->         
+        <section class="section"> 
+            <div class="container"> 
+                <div class="section-title"> 
+                    <h2>Planta da Escola</h2> 
+                </div>                 
+                <div class="planta-cards"> 
+                    <a href="https://acrobat.adobe.com/id/urn:aaid:sc:VA6C2:a4b6e1c3-7ae4-4087-80e7-dbedde53bbf6" target="_blank" class="planta-card"> 
+                        <i class="fas fa-school"></i> 
+                        <h3>Mapa do Campus</h3> 
+                        <p>Confira a planta baixa do IF Sertão-PE Campus Ouricuri para se localizar melhor!</p> 
+                        <span class="badge"><i class="fas fa-map-marked-alt"></i> Abrir Planta</span> 
+                    </a> 
+                </div>                 
+            </div>             
+        </section>         
+        
+        <!-- DÚVIDAS FREQUENTES - Estilo Acordeão -->         
+        <section class="section"> 
+            <div class="container"> 
+                <div class="section-title"> 
+                    <h2>Dúvidas Frequentes</h2> 
+                </div>                 
+                <div class="faq-container"> 
+                    <!-- Pergunta 1: Estágio -->                     
+                    <div class="faq-item"> 
+                        <div class="faq-pergunta"> 
+                            <span>Como funciona e pra que serve o estágio ?</span> 
+                            <i class="fas fa-chevron-down"></i> 
+                        </div>                         
+                        <div class="faq-resposta"> 
+                            <p>O estágio no Instituto Federal (IF) é uma atividade que permite ao aluno aplicar, na prática, os conhecimentos aprendidos em sala de aula. Ele tem como objetivo aproximar o estudante do mercado de trabalho, proporcionando experiências profissionais relacionadas ao curso que está sendo realizado.</p> 
+                            <p>Durante o estágio, o aluno pode desenvolver habilidades importantes, como responsabilidade, trabalho em equipe e organização, além de conhecer melhor a rotina da área em que pretende atuar no futuro. O estágio pode ocorrer em empresas, instituições públicas ou privadas, sempre com acompanhamento e orientação da escola e de um supervisor no local de trabalho.</p> 
+                            <p>O estágio também contribui para a formação profissional do estudante, permitindo que ele tenha contato com situações reais da profissão e desenvolva competências importantes para sua área de atuação.</p> 
+                            <p>Além disso, o estágio deve ser realizado em empresas que possuam parceria com o IF Campus Ouricuri, pois para que ele seja contabilizado como estágio é necessário atender a alguns critérios estabelecidos pela instituição. Para organizar e formalizar o estágio, existe uma documentação específica que deve ser preenchida, e essa papelada pode ser encontrada na Coordenação de Pesquisa e Extensão do campus.</p> 
+                            <p>A carga horária obrigatória do estágio é de 300 horas. No entanto, algumas atividades realizadas dentro do próprio campus também podem contar como carga horária de estágio, como bolsas de pesquisa ou participação em projetos institucionais, por exemplo, projetos de robótica.</p> 
+                            <p>Para realizar o estágio, o estudante também precisa ter um professor orientador, que será responsável por acompanhar e orientar o aluno durante todo o período do estágio.</p> 
+                            <p>Outro ponto importante é que o estágio deve acontecer sempre em horário contrário ao das aulas. Assim, se o estudante estuda pela manhã, deverá estagiar à tarde; e, se estuda à tarde, deverá realizar o estágio no período da manhã.</p> 
+                            <p>Os dias de estágio podem variar de empresa para empresa, podendo ocorrer de segunda a sexta-feira ou de segunda a sábado, exceto o dia do contraturno escolar. Além disso, é permitido apenas no máximo 6 horas de estágio por dia e 30 horas por semana. Considerando essa carga horária, o estudante levará aproximadamente entre dois meses e meio e três meses para completar as 300 horas obrigatórias de estágio.</p> 
+                            <div class="destaque"> 
+                                <strong>Observação importante:</strong> A realização e a conclusão do estágio são obrigatórias para os alunos dos cursos técnicos do IF Sertão-PE. O estágio deve ser concluído durante o período em que o estudante estiver cursando o Instituto Federal. Sem a finalização do estágio, o aluno não poderá concluir o curso nem se formar. 
+                            </div>                             
+                        </div>                         
+                    </div>                     
+                    
+                    <!-- Pergunta 2: SUAP -->                     
+                    <div class="faq-item"> 
+                        <div class="faq-pergunta"> 
+                            <span>Como acessar o SUAP ?</span> 
+                            <i class="fas fa-chevron-down"></i> 
+                        </div>                         
+                        <div class="faq-resposta"> 
+                            <p>Para acessar o SUAP (Sistema Unificado de Administração Pública), o aluno deve entrar no site do sistema e utilizar suas informações de acesso fornecidas pelo Instituto Federal.</p> 
+                            <p><strong>No login, utilize os seguintes dados:</strong></p> 
+                            <p>• <strong>Login:</strong> número da matrícula do aluno<br> 
+                            • <strong>Senha:</strong> if + CPF (sem pontos ou traços)</p> 
+                            <p><strong>Exemplo:</strong><br> 
+                            Login: 2026123456<br> 
+                            Senha: if12345678900</p> 
+                            <p>Após acessar o sistema, o aluno poderá consultar diversas informações importantes, como notas, frequência, horários de aula, avisos da instituição e outras informações acadêmicas.</p> 
+                            
+                            <!-- Caixinha do SUAP (visual) -->                             
+                            <div class="suap-card"> 
+                                <h4> 
+                                    <i class="fas fa-user-graduate"></i> 
+                                    suap.ifsertaope.edu.br 
+                                </h4>                                 
+                                <div class="login-box"> 
+                                    <p><i class="fas fa-user"></i> <strong>Usuário:</strong> Matrícula</p> 
+                                    <p><i class="fas fa-lock"></i> <strong>Senha:</strong> Ex: if.12345678900</p> 
+                                    <div class="exemplo"> 
+                                        <i class="fas fa-arrow-right"></i> Exemplo: if12345678900 
+                                    </div>                                     
+                                </div>                                 
+                                <a href="https://www.google.com/url?q=https://suap.ifsertao-pe.edu.br/&sa=U&sqi=2&ved=2ahUKEwitk5G9jJSTAxV2mZUCHV8aJ7kQFnoECCoQAQ&usg=AOvVaw0rzehhZcsX7SwvDjWVhFnq" target="_blank" class="botao-acessar"> 
+                                    Acessar o SUAP 
+                                </a>                                 
+                            </div>                             
+                        </div>                         
+                    </div>                     
+                    
+                    <!-- Pergunta 3: E-mail Institucional -->                     
+                    <div class="faq-item"> 
+                        <div class="faq-pergunta"> 
+                            <span>Como faço pra ter acesso ao e-mail institucional ?</span> 
+                            <i class="fas fa-chevron-down"></i> 
+                        </div>                         
+                        <div class="faq-resposta"> 
+                            <p>O e-mail institucional é uma ferramenta oficial disponibilizada pelo Instituto Federal aos estudantes, servidores e professores. Ele funciona como um canal de comunicação formal entre o aluno e a instituição, sendo utilizado para o envio de informações importantes relacionadas à vida acadêmica.</p> 
+                            <p>Por meio do e-mail institucional, os estudantes recebem avisos da coordenação, comunicados de professores, informações sobre eventos, prazos acadêmicos, oportunidades de estágio, projetos de pesquisa, editais e outras atividades do campus. Por isso, é fundamental que o aluno acesse esse e-mail com frequência para não perder nenhuma informação importante.</p> 
+                            <p>Além da comunicação, o e-mail institucional também permite que o estudante tenha acesso a diversos serviços educacionais e plataformas digitais utilizados pelo Instituto Federal. Em muitos casos, ele é necessário para entrar em ambientes virtuais de aprendizagem, participar de atividades online, acessar documentos compartilhados e utilizar ferramentas acadêmicas disponibilizadas pela instituição.</p> 
+                            <p>Para criar o e-mail institucional, é necessário que o aluno se dirija primeiro ao Controle Acadêmico do campus e, em seguida, ao setor de Tecnologia da Informação (T.I.), solicitando a criação e o acesso ao e-mail. A equipe responsável fará a criação da conta e repassará o endereço do e-mail ao estudante. Depois disso, o aluno poderá definir uma senha de sua preferência e começar a utilizá-lo normalmente.</p> 
+                            <p>O e-mail institucional é necessário para praticamente todas as atividades dentro do campus, como acesso ao Google Classroom, participação em salas de aula online, reuniões virtuais, projetos, envio e recebimento de materiais acadêmicos, entre outras atividades. Por isso, é muito importante que todos os estudantes tenham e utilizem seu e-mail institucional regularmente.</p> 
+                        </div>                         
+                    </div>                     
+                    
+                    <!-- Pergunta 4: Renovação de Matrícula -->                     
+                    <div class="faq-item"> 
+                        <div class="faq-pergunta"> 
+                            <span>Como funciona a renovação de matrículas ?</span> 
+                            <i class="fas fa-chevron-down"></i> 
+                        </div>                         
+                        <div class="faq-resposta"> 
+                            <p>A renovação de matrícula é o processo que garante a continuidade do estudante no Instituto Federal para o período letivo seguinte. Por meio dela, o aluno confirma que continuará regularmente matriculado no curso e poderá participar das aulas e demais atividades acadêmicas.</p> 
+                            <p>Esse procedimento é muito importante, pois sem a renovação da matrícula o estudante pode ficar irregular no sistema acadêmico e ter dificuldades para participar das atividades do curso. Por isso, é fundamental que o aluno fique atento aos prazos divulgados pelo campus para realizar esse processo.</p> 
+                            <p>A renovação de matrícula geralmente acontece a cada início de semestre ou ano letivo, dependendo da organização do curso. Durante esse período, o Instituto Federal divulga as datas e orientações para que os estudantes realizem a renovação dentro do prazo estabelecido.</p> 
+                            <p>Normalmente, esse processo é realizado por meio do sistema acadêmico do Instituto Federal. Dito isso, o estudante acessa o SUAP ao fim de cada ano letivo e solicita a renovação da matrícula. Do primeiro ano para o segundo ano, a matrícula é renovada automaticamente. Porém, do segundo ano para o terceiro ano, o estudante precisa solicitar a renovação manualmente pelo SUAP. Caso o estudante fique para pagar alguma matéria, é necessário entrar em contato com o professor da disciplina ou ir até o Controle Acadêmico para ser matriculado novamente na matéria que precisará cursar outra vez.</p> 
+                            <p>A renovação de matrícula é essencial para garantir que o estudante continue regularmente vinculado ao curso, podendo participar das aulas, avaliações, projetos, estágios e demais atividades acadêmicas oferecidas pela instituição. Por isso, é muito importante que todos os alunos realizem esse procedimento dentro do prazo informado pelo campus.</p> 
+                        </div>                         
+                    </div>                     
+                </div>                 
+            </div>             
+        </section>         
+        
+        <!-- Guia Rápido -->         
+        <section class="section"> 
+            <div class="container"> 
+                <div class="section-title"> 
+                    <h2>Guia Rápido</h2> 
+                </div>                 
+                <div class="guia-grid"> 
+                    <div class="guia-item"> 
+                        <div class="guia-icon"> 
+                            <i class="fas fa-address-card"></i> 
+                        </div>                         
+                        <div class="guia-text"> 
+                            <h4>SUAP</h4> 
+                            <p>Login: matrícula | Senha: if. + CPF</p> 
+                        </div>                         
+                    </div>                     
+                    <div class="guia-item"> 
+                        <div class="guia-icon"> 
+                            <i class="fas fa-book"></i> 
+                        </div>                         
+                        <div class="guia-text"> 
+                            <h4>Biblioteca</h4> 
+                            <p>Confira a localização no mapa</p> 
+                        </div>                         
+                    </div>                     
+                    <div class="guia-item"> 
+                        <div class="guia-icon"> 
+                            <i class="fas fa-wifi"></i> 
+                        </div>                         
+                        <div class="guia-text"> 
+                            <h4>Wi-Fi</h4> 
+                            <p>Senha: ifouricuri</p> 
+                        </div>                         
+                    </div>                     
+                    <div class="guia-item"> 
+                        <div class="guia-icon"> 
+                            <i class="fas fa-heartbeat"></i> 
+                        </div>                         
+                        <div class="guia-text"> 
+                            <h4>Enfermaria</h4> 
+                            <p>Próximo aos setores a esquerda do Hall</p> 
+                        </div>                         
+                    </div>                     
+                </div>                 
+            </div>             
+        </section>         
+        
+        <!-- Links para os Setores -->         
+        <section class="section"> 
+            <div class="container"> 
+                <div class="section-title"> 
+                    <h2>Acesse os Setores</h2> 
+                    <p>Clique em cada setor para ver todas as informações</p> 
+                </div>                 
+                <div class="setores-home"> 
+                    <div class="setor-home-card" data-setor="cca"> 
+                        <div class="setor-home-icon"> 
+                            <i class="fas fa-address-card"></i> 
+                        </div>                         
+                        <div class="setor-home-info"> 
+                            <h3>CCA</h3> 
+                            <p>Controle Acadêmico - Matrículas</p> 
+                        </div>                         
+                    </div>                     
+                    <div class="setor-home-card" data-setor="cpae"> 
+                        <div class="setor-home-icon"> 
+                            <i class="fas fa-hands-helping"></i> 
+                        </div>                         
+                        <div class="setor-home-info"> 
+                            <h3>CPAE</h3> 
+                            <p>Assistência Estudantil</p> 
+                        </div>                         
+                    </div>                     
+                    <div class="setor-home-card" data-setor="saude"> 
+                        <div class="setor-home-icon"> 
+                            <i class="fas fa-heartbeat"></i> 
+                        </div>                         
+                        <div class="setor-home-info"> 
+                            <h3>Saúde</h3> 
+                            <p>Atendimento médico e psicológico</p> 
+                        </div>                         
+                    </div>                     
+                    <div class="setor-home-card" data-setor="dap"> 
+                        <div class="setor-home-icon"> 
+                            <i class="fas fa-chart-line"></i> 
+                        </div>                         
+                        <div class="setor-home-info"> 
+                            <h3>DAP</h3> 
+                            <p>Administração e Planejamento</p> 
+                        </div>                         
+                    </div>                     
+                    <div class="setor-home-card" data-setor="aee"> 
+                        <div class="setor-home-icon"> 
+                            <i class="fas fa-universal-access"></i> 
+                        </div>                         
+                        <div class="setor-home-info"> 
+                            <h3>AEE/NAPNE</h3> 
+                            <p>Inclusão e Acessibilidade</p> 
+                        </div>                         
+                    </div>                     
+                    <div class="setor-home-card" data-setor="contabilidade"> 
+                        <div class="setor-home-icon"> 
+                            <i class="fas fa-file-invoice-dollar"></i> 
+                        </div>                         
+                        <div class="setor-home-info"> 
+                            <h3>Contabilidade</h3> 
+                            <p>Contratos e Finanças</p> 
+                        </div>                         
+                    </div>                     
+                    <div class="setor-home-card" data-setor="ti"> 
+                        <div class="setor-home-icon"> 
+                            <i class="fas fa-laptop"></i> 
+                        </div>                         
+                        <div class="setor-home-info"> 
+                            <h3>TI</h3> 
+                            <p>Tecnologia da Informação</p> 
+                        </div>                         
+                    </div>                     
+                    <div class="setor-home-card" data-setor="pesquisa"> 
+                        <div class="setor-home-icon"> 
+                            <i class="fas fa-flask"></i> 
+                        </div>                         
+                        <div class="setor-home-info"> 
+                            <h3>Pesquisa e Extensão</h3> 
+                            <p>Projetos e Editais</p> 
+                        </div>                         
+                    </div>                     
+                    <div class="setor-home-card" data-setor="nupe"> 
+                        <div class="setor-home-icon"> 
+                            <i class="fas fa-chalkboard-teacher"></i> 
+                        </div>                         
+                        <div class="setor-home-info"> 
+                            <h3>NuPe</h3> 
+                            <p>Núcleo Pedagógico</p> 
+                        </div>                         
+                    </div>                     
+                    <div class="setor-home-card" data-setor="quimica"> 
+                        <div class="setor-home-icon"> 
+                            <i class="fas fa-flask"></i> 
+                        </div>                         
+                        <div class="setor-home-info"> 
+                            <h3>Licenciatura em Química</h3> 
+                            <p>Coordenação do Curso</p> 
+                        </div>                         
+                    </div>                     
+                    <div class="setor-home-card" data-setor="den"> 
+                        <div class="setor-home-icon"> 
+                            <i class="fas fa-school"></i> 
+                        </div>                         
+                        <div class="setor-home-info"> 
+                            <h3>DEN</h3> 
+                            <p>Departamento de Ensino</p> 
+                        </div>                         
+                    </div>                     
+                    <div class="setor-home-card" data-setor="cgp"> 
+                        <div class="setor-home-icon"> 
+                            <i class="fas fa-users-cog"></i> 
+                        </div>                         
+                        <div class="setor-home-info"> 
+                            <h3>CGP</h3> 
+                            <p>Gestão de Pessoas</p> 
+                        </div>                         
+                    </div>                     
+                    <div class="setor-home-card" data-setor="gabinete"> 
+                        <div class="setor-home-icon"> 
+                            <i class="fas fa-user-tie"></i> 
+                        </div>                         
+                        <div class="setor-home-info"> 
+                            <h3>Gabinete</h3> 
+                            <p>Coordenação de Gabinete</p> 
+                        </div>                         
+                    </div>                     
+                    <div class="setor-home-card" data-setor="sae"> 
+                        <div class="setor-home-icon"> 
+                            <i class="fas fa-hands-helping"></i> 
+                        </div>                         
+                        <div class="setor-home-info"> 
+                            <h3>SAE</h3> 
+                            <p>Assistência ao Educando</p> 
+                        </div>                         
+                    </div>                     
+                    <div class="setor-home-card" data-setor="reprografia"> 
+                        <div class="setor-home-icon"> 
+                            <i class="fas fa-print"></i> 
+                        </div>                         
+                        <div class="setor-home-info"> 
+                            <h3>Repografia</h3> 
+                            <p>Impressões e Cópias</p> 
+                        </div>                         
+                    </div>                     
+                    <div class="setor-home-card" data-setor="tecnicos"> 
+                        <div class="setor-home-icon"> 
+                            <i class="fas fa-flask"></i> 
+                        </div>                         
+                        <div class="setor-home-info"> 
+                            <h3>Sala de Técnicos</h3> 
+                            <p>Suporte a Laboratórios</p> 
+                        </div>                         
+                    </div>                     
+                    <div class="setor-home-card" data-setor="ccev"> 
+                        <div class="setor-home-icon"> 
+                            <i class="fas fa-bullhorn"></i> 
+                        </div>                         
+                        <div class="setor-home-info"> 
+                            <h3>CCEV</h3> 
+                            <p>Comunicação e Eventos</p> 
+                        </div>                         
+                    </div>                     
+                    <div class="setor-home-card" data-setor="coordenacoes"> 
+                        <div class="setor-home-icon"> 
+                            <i class="fas fa-chalkboard"></i> 
+                        </div>                         
+                        <div class="setor-home-info"> 
+                            <h3>Coordenações</h3> 
+                            <p>Cursos EMI/SUB/PROEJA e Matemática/Química</p> 
+                        </div>                         
+                    </div>                     
+                    <div class="setor-home-card" data-setor="biblioteca"> 
+                        <div class="setor-home-icon"> 
+                            <i class="fas fa-book"></i> 
+                        </div>                         
+                        <div class="setor-home-info"> 
+                            <h3>Biblioteca</h3> 
+                            <p>Acervo e Espaço de Estudo</p> 
+                        </div>                         
+                    </div>
+                    <div class="setor-home-card" data-setor="onibus"> 
+                        <div class="setor-home-icon"> 
+                            <i class="fas fa-bus"></i> 
+                        </div>                         
+                        <div class="setor-home-info"> 
+                            <h3>Ônibus Escolar</h3> 
+                            <p>Horários e itinerários do transporte</p> 
+                        </div>                         
+                    </div>                     
+                </div>                 
+            </div>             
+        </section>         
+    </div>         
+    
+    <!-- SETOR 1: CCA - Controle Acadêmico -->         
+    <div id="setor-cca" class="setor-container"> 
+        <div class="container"> 
+            <button class="voltar-home" id="voltarInicio"> 
+                <i class="fas fa-arrow-left"></i> Voltar para página inicial 
+            </button>                 
+            <div class="setor-card-detalhado"> 
+                <div class="setor-titulo-detalhado"> 
+                    <div class="icone-grande"> 
+                        <i class="fas fa-address-card"></i> 
+                    </div>                         
+                    <div> 
+                        <h1>CCA - Controle Acadêmico</h1> 
+                        <p>Coordenação de Controle Acadêmico</p> 
+                    </div>                         
+                </div>                     
+                <div class="setor-info"> 
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-clock"></i> Horário de Funcionamento</h4> 
+                        <p>Das 9h às 21h</p> 
+                    </div>                         
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-users"></i> Atendimento</h4> 
+                        <div class="horario-grid"> 
+                            <div class="horario-bloco"> 
+                                <strong>9h às 13h</strong> 
+                                <span>Seg: Alírio e Camila<br>Ter: Alírio e Camila<br>Qua: Alírio e Camila<br>Qui: Camila<br>Sex: Alírio</span> 
+                                <div class="contato-botoes-mini">
+                                    <a href="https://wa.me/5587996250145" class="contato-btn-mini whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> Alírio</a>
+                                    <a href="https://wa.me/5587996250145" class="contato-btn-mini whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> Camila</a>
+                                </div>
+                            </div>                                 
+                            <div class="horario-bloco"> 
+                                <strong>13h às 17h</strong> 
+                                <span>Seg: Tatiana<br>Ter: Tatiana<br>Qua: Tatiana<br>Qui: Alírio<br>Sex: Tatiana</span> 
+                                <div class="contato-botoes-mini">
+                                    <a href="https://wa.me/5587996250145" class="contato-btn-mini whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> Tatiana</a>
+                                </div>
+                            </div>                                 
+                            <div class="horario-bloco"> 
+                                <strong>17h às 21h</strong> 
+                                <span>Seg a Sex: Sharles</span> 
+                                <div class="contato-botoes-mini">
+                                    <a href="https://wa.me/5587996250145" class="contato-btn-mini whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> Sharles</a>
+                                </div>
+                            </div>                                 
+                        </div>                             
+                    </div>                         
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-tasks"></i> O que faz</h4> 
+                        <ul> 
+                            <li><i class="fas fa-check"></i> Matrícula geral do estudante</li> 
+                            <li><i class="fas fa-check"></i> Matrícula nas disciplinas</li> 
+                            <li><i class="fas fa-check"></i> Orientações sobre situação acadêmica</li> 
+                        </ul> 
+                    </div>                         
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-laptop"></i> Acesso ao SUAP</h4> 
+                        <p><strong>Login:</strong> número da matrícula<br> 
+                        <strong>Senha:</strong> if. + seu CPF (sem pontos e traços)<br> 
+                        <small>Ex: CPF 123.456.789-00 → senha: if.12345678900</small></p> 
+                    </div>                         
+                </div>                     
+            </div>                 
+        </div>             
+    </div>         
+    
+    <!-- SETOR 2: CPAE - Assistência Estudantil -->         
+    <div id="setor-cpae" class="setor-container"> 
+        <div class="container"> 
+            <button class="voltar-home" id="voltarInicio2"> 
+                <i class="fas fa-arrow-left"></i> Voltar para página inicial 
+            </button>                 
+            <div class="setor-card-detalhado"> 
+                <div class="setor-titulo-detalhado"> 
+                    <div class="icone-grande"> 
+                        <i class="fas fa-hands-helping"></i> 
+                    </div>                         
+                    <div> 
+                        <h1>CPAE - Assistência Estudantil</h1> 
+                        <p>Coordenação de Políticas de Assistência Estudantil</p> 
+                    </div>                         
+                </div>                     
+                <div class="setor-info"> 
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-user"></i> Coordenadora</h4> 
+                        <p><strong>Kátia Bruna</strong></p> 
+                        <div class="contato-botoes-mini">
+                            <a href="https://wa.me/5587996530298" class="contato-btn-mini whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                        </div>
+                    </div>                         
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-clock"></i> Horários - Kátia Bruna</h4> 
+                        <div class="horario-grid"> 
+                            <div class="horario-bloco"> 
+                                <strong>Segunda</strong> 
+                                <span>8h-12h (remoto)<br>13h-17h (presencial)</span> 
+                            </div>                                 
+                            <div class="horario-bloco"> 
+                                <strong>Terça</strong> 
+                                <span>8h-12h (remoto)<br>13h-17h (presencial)</span> 
+                            </div>                                 
+                            <div class="horario-bloco"> 
+                                <strong>Quarta</strong> 
+                                <span>12h-16h (presencial)<br>17h-21h (presencial)</span> 
+                            </div>                                 
+                            <div class="horario-bloco"> 
+                                <strong>Quinta</strong> 
+                                <span>8h-12h (presencial)<br>13h-17h (remoto)</span> 
+                            </div>                                 
+                            <div class="horario-bloco"> 
+                                <strong>Sexta</strong> 
+                                <span>8h-12h (remoto)<br>13h-17h (remoto)</span> 
+                            </div>                                 
+                        </div>                             
+                    </div>                         
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-tasks"></i> O que faz</h4> 
+                        <ul> 
+                            <li><i class="fas fa-check"></i> Coordena as políticas de assistência estudantil</li> 
+                            <li><i class="fas fa-check"></i> Acompanha programas e auxílios aos estudantes</li> 
+                            <li><i class="fas fa-check"></i> Apoia acesso, permanência e êxito acadêmico</li> 
+                            <li><i class="fas fa-check"></i> Orienta sobre serviços de assistência estudantil</li> 
+                        </ul> 
+                    </div>                         
+                </div>                     
+            </div>                 
+        </div>             
+    </div>         
+    
+    <!-- SETOR 3: Assistência à Saúde -->         
+    <div id="setor-saude" class="setor-container"> 
+        <div class="container"> 
+            <button class="voltar-home" id="voltarInicio3"> 
+                <i class="fas fa-arrow-left"></i> Voltar para página inicial 
+            </button>                 
+            <div class="setor-card-detalhado"> 
+                <div class="setor-titulo-detalhado"> 
+                    <div class="icone-grande"> 
+                        <i class="fas fa-heartbeat"></i> 
+                    </div>                         
+                    <div> 
+                        <h1>Assistência à Saúde</h1> 
+                        <p>Atendimento físico e emocional</p> 
+                    </div>                         
+                </div>                     
+                <div class="setor-info"> 
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-user-nurse"></i> Rozemário - Téc. Enfermagem</h4> 
+                        <p>Seg a Sex: 8h-12h | 13h-17h</p> 
+                        <div class="contato-botoes-mini">
+                            <a href="https://wa.me/5587996385763" class="contato-btn-mini whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                        </div>
+                    </div>                         
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-brain"></i> Lady-Anne - Psicóloga</h4> 
+                        <p>Seg a Sex: 8h-12h | 14h-18h</p> 
+                        <div class="contato-botoes-mini">
+                            <a href="https://wa.me/5587996329974" class="contato-btn-mini whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                        </div>
+                    </div>                         
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-brain"></i> Fernanda - Psicóloga (Estagiária)</h4> 
+                        <p>Seg a Qui: 17h20-22h<br> 
+                        Sex: 7h20-13h20 | 14h20-19h</p> 
+                        <div class="contato-botoes-mini">
+                            <a href="https://wa.me/558796385763" class="contato-btn-mini whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                        </div>
+                    </div>                         
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-user-md"></i> Dr. Eduardo - Médico</h4> 
+                        <p>Seg a Sex: 18h-22h</p> 
+                        <div class="contato-botoes-mini">
+                            <a href="https://wa.me/5587999956917" class="contato-btn-mini whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                        </div>
+                    </div>                         
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-tasks"></i> O que oferece</h4> 
+                        <ul> 
+                            <li><i class="fas fa-check"></i> Máscaras descartáveis</li> 
+                            <li><i class="fas fa-check"></i> Atendimento de enfermagem</li> 
+                            <li><i class="fas fa-check"></i> Orientações de saúde</li> 
+                            <li><i class="fas fa-check"></i> Atendimento médico</li> 
+                            <li><i class="fas fa-check"></i> Apoio psicológico</li> 
+                        </ul> 
+                    </div>                         
+                </div>                     
+            </div>                 
+        </div>             
+    </div>         
+    
+    <!-- SETOR 4: DAP - Administração -->         
+    <div id="setor-dap" class="setor-container"> 
+        <div class="container"> 
+            <button class="voltar-home" id="voltarInicio4"> 
+                <i class="fas fa-arrow-left"></i> Voltar para página inicial 
+            </button>                 
+            <div class="setor-card-detalhado"> 
+                <div class="setor-titulo-detalhado"> 
+                    <div class="icone-grande"> 
+                        <i class="fas fa-chart-line"></i> 
+                    </div>                         
+                    <div> 
+                        <h1>DAP - Administração</h1> 
+                        <p>Departamento de Administração e Planejamento</p> 
+                    </div>                         
+                </div>                     
+                <div class="setor-info"> 
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-user"></i> Deyvid Wilkerson</h4> 
+                        <p><strong>Presencial:</strong> Ter/Qui 13h-17h<br> 
+                        <strong>Remoto:</strong> Variado</p> 
+                        <div class="contato-botoes-mini">
+                            <a href="https://wa.me/558796609903" class="contato-btn-mini whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                        </div>
+                    </div>                         
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-user"></i> Selvânia Maria</h4> 
+                        <p><strong>Presencial:</strong> Seg/Qui 7h30-13h30</p> 
+                        </div>
+                    </div>                         
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-user"></i> Jeanilson Magalhães</h4> 
+                        <div class="contato-botoes-mini">
+                            <a href="https://wa.me/558791273303" class="contato-btn-mini whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                        </div>
+                    </div>                         
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-user"></i> Willame Dias (Chefe)</h4> 
+                        <p><strong>Presencial:</strong> Seg 11h-17h</p> 
+                        <div class="contato-botoes-mini">
+                            <a href="https://wa.me/558796346579" class="contato-btn-mini whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                        </div>
+                    </div>                         
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-tasks"></i> O que faz</h4> 
+                        <ul> 
+                            <li><i class="fas fa-check"></i> Organiza processos administrativos</li> 
+                            <li><i class="fas fa-check"></i> Cuida do planejamento financeiro</li> 
+                            <li><i class="fas fa-check"></i> Gerencia demandas administrativas</li> 
+                        </ul> 
+                    </div>                         
+                </div>                     
+            </div>                 
+        </div>             
+    </div>         
+    
+    <!-- SETOR 5: AEE/NAPNE - Inclusão -->         
+    <div id="setor-aee" class="setor-container"> 
+        <div class="container"> 
+            <button class="voltar-home" id="voltarInicio5"> 
+                <i class="fas fa-arrow-left"></i> Voltar para página inicial 
+            </button>                 
+            <div class="setor-card-detalhado"> 
+                <div class="setor-titulo-detalhado"> 
+                    <div class="icone-grande"> 
+                        <i class="fas fa-universal-access"></i> 
+                    </div>                         
+                    <div> 
+                        <h1>AEE/NAPNE - Inclusão</h1> 
+                        <p>Atendimento Educacional Especializado</p> 
+                    </div>                         
+                </div>                     
+                <div class="setor-info"> 
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-user"></i> José Carlos (Coordenador)</h4> 
+                        <p>Horários variados</p> 
+                        <div class="contato-botoes-mini">
+                            <a href="https://wa.me/558799963419" class="contato-btn-mini whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                        </div>
+                    </div>                         
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-user"></i> Elielma - AEE</h4> 
+                        <p>Atendimento presencial: Ter, Qua, Qui, Sex</p> 
+                    </div>                         
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-user"></i> Aline Novais - AEE</h4> 
+                        <p>Horários variados</p> 
+                    </div>                         
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-tasks"></i> O que faz</h4> 
+                        <ul> 
+                            <li><i class="fas fa-check"></i> Apoio a estudantes com deficiência</li> 
+                            <li><i class="fas fa-check"></i> Promove inclusão e acessibilidade</li> 
+                            <li><i class="fas fa-check"></i> Atendimento educacional especializado</li> 
+                            <li><i class="fas fa-check"></i> Orientação sobre Libras e inclusão</li> 
+                        </ul> 
+                    </div>                         
+                </div>                     
+            </div>                 
+        </div>             
+    </div>         
+    
+    <!-- SETOR 6: Contabilidade/Contratos -->         
+    <div id="setor-contabilidade" class="setor-container"> 
+        <div class="container"> 
+            <button class="voltar-home" id="voltarInicio6"> 
+                <i class="fas fa-arrow-left"></i> Voltar para página inicial 
+            </button>                 
+            <div class="setor-card-detalhado"> 
+                <div class="setor-titulo-detalhado"> 
+                    <div class="icone-grande"> 
+                        <i class="fas fa-file-invoice-dollar"></i> 
+                    </div>                         
+                    <div> 
+                        <h1>Contabilidade e Contratos</h1> 
+                        <p>Planejamento, Contratos, Manutenção e Transporte</p> 
+                    </div>                         
+                </div>                     
+                <div class="setor-info"> 
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-clock"></i> Funcionamento</h4> 
+                        <p>Presencial: 8h-12h (Seg a Sex)</p> 
+                    </div>                         
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-user"></i> Jesaias Jorge</h4> 
+                        <div class="contato-botoes-mini">
+                            <a href="https://wa.me/558796077222" class="contato-btn-mini whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                        </div>
+                    </div>                         
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-user"></i> Aluísio Dennes</h4> 
+                        <div class="contato-botoes-mini">
+                            <a href="https://wa.me/55899981222662" class="contato-btn-mini whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                        </div>
+                    </div>                         
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-user"></i> Gilsayne Guimarães</h4> 
+                        <div class="contato-botoes-mini">
+                            <a href="https://wa.me/558799917433" class="contato-btn-mini whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                        </div>
+                    </div>                         
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-user"></i> Gerson De Alencar</h4> 
+                        <div class="contato-botoes-mini">
+                            <a href="https://wa.me/558796039934" class="contato-btn-mini whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                        </div>
+                    </div>                         
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-tasks"></i> O que faz</h4> 
+                        <ul> 
+                            <li><i class="fas fa-check"></i> Contabilidade e execução financeira</li> 
+                            <li><i class="fas fa-check"></i> Gestão de contratos e licitações</li> 
+                            <li><i class="fas fa-check"></i> Manutenção predial e transporte</li> 
+                        </ul> 
+                        <p style="margin-top: 10px; background: var(--verde-fundo); padding: 10px; border-radius: 8px;">
+                            <i class="fas fa-info-circle" style="color: var(--verde-floresta);"></i> 
+                            <strong>Importante:</strong> É aqui que o aluno solicita o uso do carro da escola.
+                        </p> 
+                    </div>                         
+                </div>                     
+            </div>                 
+        </div>             
+    </div>         
+    
+    <!-- SETOR 7: TI - Tecnologia -->         
+    <div id="setor-ti" class="setor-container"> 
+        <div class="container"> 
+            <button class="voltar-home" id="voltarInicio7"> 
+                <i class="fas fa-arrow-left"></i> Voltar para página inicial 
+            </button>                 
+            <div class="setor-card-detalhado"> 
+                <div class="setor-titulo-detalhado"> 
+                    <div class="icone-grande"> 
+                        <i class="fas fa-laptop"></i> 
+                    </div>                         
+                    <div> 
+                        <h1>TI - Tecnologia</h1> 
+                        <p>Setor de Tecnologia da Informação</p> 
+                    </div>                         
+                </div>                     
+                <div class="setor-info"> 
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-user"></i> Antônio Jeulson</h4> 
+                        <p>Seg-Sex 8h-12h | 13h-18h</p> 
+                        <div class="contato-botoes-mini">
+                            <a href="https://wa.me/55879999334335" class="contato-btn-mini whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                        </div>
+                    </div>                         
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-user"></i> Joana Oliveira</h4> 
+                        <p>Seg-Sex 8h-12h | 13h-18h</p> 
+                        <div class="contato-botoes-mini">
+                            <a href="https://wa.me/558788335005" class="contato-btn-mini whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                        </div>
+                    </div>                         
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-user"></i> Caio Cézar</h4> 
+                        <p>Seg-Sex 8h-12h</p> 
+                        <div class="contato-botoes-mini">
+                            <a href="https://wa.me/558799519911" class="contato-btn-mini whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                        </div>
+                    </div>                         
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-tasks"></i> O que faz</h4> 
+                        <ul> 
+                            <li><i class="fas fa-check"></i> Suporte técnico em computadores</li> 
+                            <li><i class="fas fa-check"></i> Auxílio em plataformas digitais</li> 
+                            <li><i class="fas fa-check"></i> Manutenção da infraestrutura de TI</li> 
+                        </ul> 
+                    </div>                         
+                </div>                     
+            </div>                 
+        </div>             
+    </div>         
+    
+    <!-- SETOR 8: Pesquisa e Extensão -->         
+    <div id="setor-pesquisa" class="setor-container"> 
+        <div class="container"> 
+            <button class="voltar-home" id="voltarInicio8"> 
+                <i class="fas fa-arrow-left"></i> Voltar para página inicial 
+            </button>                 
+            <div class="setor-card-detalhado"> 
+                <div class="setor-titulo-detalhado"> 
+                    <div class="icone-grande"> 
+                        <i class="fas fa-flask"></i> 
+                    </div>                         
+                    <div> 
+                        <h1>Pesquisa e Extensão</h1> 
+                        <p>Coordenação de Pesquisa e Extensão</p> 
+                    </div>                         
+                </div>                     
+                <div class="setor-info"> 
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-clock"></i> Horários</h4> 
+                        <div class="horario-grid"> 
+                            <div class="horario-bloco"> 
+                                <strong>Manhã</strong> 
+                                <span>Seg/Ter: Presencial<br>Qui: Remoto<br>Sex: Presencial</span> 
+                            </div>                                 
+                            <div class="horario-bloco"> 
+                                <strong>Tarde</strong> 
+                                <span>Seg/Ter/Qua: Remoto<br>Qui: Presencial<br>Sex: Remoto</span> 
+                            </div>                                 
+                            <div class="horario-bloco"> 
+                                <strong>Noite</strong> 
+                                <span>Qua: Presencial</span> 
+                            </div>                                 
+                        </div>                             
+                    </div>                         
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-tasks"></i> O que faz</h4> 
+                        <ul> 
+                            <li><i class="fas fa-check"></i> Apoia projetos de pesquisa</li> 
+                            <li><i class="fas fa-check"></i> Incentiva iniciação à pesquisa</li> 
+                            <li><i class="fas fa-check"></i> Planeja ações de extensão</li> 
+                            <li><i class="fas fa-check"></i> Orienta sobre editais</li> 
+                        </ul> 
+                    </div>                         
+                </div>                     
+            </div>                 
+        </div>             
+    </div>         
+    
+    <!-- SETOR 9: NuPe - Núcleo Pedagógico -->         
+    <div id="setor-nupe" class="setor-container"> 
+        <div class="container"> 
+            <button class="voltar-home" id="voltarInicio9"> 
+                <i class="fas fa-arrow-left"></i> Voltar para página inicial 
+            </button>                 
+            <div class="setor-card-detalhado"> 
+                <div class="setor-titulo-detalhado"> 
+                    <div class="icone-grande"> 
+                        <i class="fas fa-chalkboard-teacher"></i> 
+                    </div>                         
+                    <div> 
+                        <h1>NuPe - Núcleo Pedagógico</h1> 
+                        <p>Núcleo Pedagógico</p> 
+                    </div>                         
+                </div>                     
+                <div class="setor-info"> 
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-user"></i> João Batista</h4> 
+                        <p>Horários variados</p> 
+                    </div>                         
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-user"></i> José Carlos</h4> 
+                        <div class="contato-botoes-mini">
+                            <a href="https://wa.me/558799963419" class="contato-btn-mini whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                        </div>
+                    </div>                         
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-user"></i> Talita Mirella (Coordenadora)</h4> 
+                        <p>Horários variados</p> 
+                    </div>                         
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-tasks"></i> O que faz</h4> 
+                        <ul> 
+                            <li><i class="fas fa-check"></i> Acompanha desenvolvimento pedagógico</li> 
+                            <li><i class="fas fa-check"></i> Apoia questões de aprendizagem</li> 
+                            <li><i class="fas fa-check"></i> Orienta professores</li> 
+                            <li><i class="fas fa-check"></i> Acompanha registros acadêmicos</li> 
+                        </ul> 
+                    </div>                         
+                </div>                     
+            </div>                 
+        </div>             
+    </div>         
+    
+    <!-- SETOR 10: Licenciatura em Química -->         
+    <div id="setor-quimica" class="setor-container"> 
+        <div class="container"> 
+            <button class="voltar-home" id="voltarInicio10"> 
+                <i class="fas fa-arrow-left"></i> Voltar para página inicial 
+            </button>                 
+            <div class="setor-card-detalhado"> 
+                <div class="setor-titulo-detalhado"> 
+                    <div class="icone-grande"> 
+                        <i class="fas fa-flask"></i> 
+                    </div>                         
+                    <div> 
+                        <h1>Licenciatura em Química</h1> 
+                        <p>Coordenação do Curso</p> 
+                    </div>                         
+                </div>                     
+                <div class="setor-info"> 
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-user"></i> Renato César da Silva - Coordenador</h4> 
+                        <p><i class="fas fa-envelope"></i> renato.cesar@ifsertao-pe.edu.br</p> 
+                        <div class="contato-botoes-mini">
+                            <a href="https://wa.me/558199569326" class="contato-btn-mini whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                        </div>
+                    </div>                         
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-user"></i> Aline Novais</h4> 
+                        <p>Professora colaboradora</p> 
+                    </div>                         
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-tasks"></i> O que faz</h4> 
+                        <ul> 
+                            <li><i class="fas fa-check"></i> Coordena atividades do curso</li> 
+                            <li><i class="fas fa-check"></i> Acompanha matriz curricular</li> 
+                            <li><i class="fas fa-check"></i> Orienta estudantes</li> 
+                        </ul> 
+                    </div>                         
+                </div>                     
+            </div>                 
+        </div>             
+    </div>         
+    
+    <!-- SETOR 11: DEN - Departamento de Ensino -->         
+    <div id="setor-den" class="setor-container"> 
+        <div class="container"> 
+            <button class="voltar-home" id="voltarInicio11"> 
+                <i class="fas fa-arrow-left"></i> Voltar para página inicial 
+            </button>                 
+            <div class="setor-card-detalhado"> 
+                <div class="setor-titulo-detalhado"> 
+                    <div class="icone-grande"> 
+                        <i class="fas fa-school"></i> 
+                    </div>                         
+                    <div> 
+                        <h1>DEN - Departamento de Ensino</h1> 
+                        <p>Departamento de Ensino / Secretaria Geral</p> 
+                    </div>                         
+                </div>                     
+                <div class="setor-info"> 
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-clock"></i> Horários</h4> 
+                        <p><strong>Seg:</strong> 10h30-12h | 19h-21h<br> 
+                        <strong>Ter:</strong> 11h-12h | 13h-17h<br> 
+                        <strong>Qua:</strong> 11h-14h30<br> 
+                        <strong>Qui:</strong> 9h30-12h | 13h-17h</p> 
+                    </div>                         
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-tasks"></i> O que faz</h4> 
+                        <ul> 
+                            <li><i class="fas fa-check"></i> Coordena atividades de ensino</li> 
+                            <li><i class="fas fa-check"></i> Organiza processos acadêmicos</li> 
+                            <li><i class="fas fa-check"></i> Apoia coordenações de curso</li> 
+                            <li><i class="fas fa-check"></i> Garante cumprimento do calendário</li> 
+                        </ul> 
+                    </div>                         
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-phone-alt"></i> Contato</h4>
+                        <h4><i class="fas fa-user"></i> Renan Fernandes</h4>  
+                        <p><i class="fas fa-envelope"></i> co.de@ifsertao-pe.edu.br<br> 
+                        <div class="contato-botoes-mini">
+                            <a href="https://wa.me/5588999100205" class="contato-btn-mini whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                        </div>
+                    </div>                         
+                </div>                     
+            </div>                 
+        </div>             
+    </div>         
+    
+    <!-- SETOR 12: CGP - Coordenação de Gestão de Pessoas -->         
+    <div id="setor-cgp" class="setor-container"> 
+        <div class="container"> 
+            <button class="voltar-home" id="voltarInicio12"> 
+                <i class="fas fa-arrow-left"></i> Voltar para página inicial 
+            </button>                 
+            <div class="setor-card-detalhado"> 
+                <div class="setor-titulo-detalhado"> 
+                    <div class="icone-grande"> 
+                        <i class="fas fa-users-cog"></i> 
+                    </div>                         
+                    <div> 
+                        <h1>CGP - Gestão de Pessoas</h1> 
+                        <p>Coordenação de Gestão de Pessoas</p> 
+                    </div>                         
+                </div>                     
+                <div class="setor-info"> 
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-user"></i> Samuel Tavares da Silva</h4> 
+                        <p>Coordenador de Gestão de Pessoas</p> 
+                        <p><strong>Presencial:</strong> Seg a Sex, 9h às 15h<br> 
+                        <strong>Remoto:</strong> Seg a Sex, 18h às 20h</p> 
+                        <div class="contato-botoes-mini">
+                            <a href="https://wa.me/55879981118332" class="contato-btn-mini whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                        </div>
+                    </div>                         
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-tasks"></i> O que faz</h4> 
+                        <ul> 
+                            <li><i class="fas fa-check"></i> Gerenciar assuntos relacionados à vida funcional dos servidores</li> 
+                            <li><i class="fas fa-check"></i> Coordenar processos administrativos de pessoal</li> 
+                            <li><i class="fas fa-check"></i> Orientar sobre direitos, deveres e normas institucionais</li> 
+                            <li><i class="fas fa-check"></i> Apoiar a gestão administrativa na área de recursos humanos</li> 
+                        </ul> 
+                    </div>                         
+                </div>                     
+            </div>                 
+        </div>             
+    </div>         
+    
+    <!-- SETOR 13: Coordenação de Gabinete -->         
+    <div id="setor-gabinete" class="setor-container"> 
+        <div class="container"> 
+            <button class="voltar-home" id="voltarInicio13"> 
+                <i class="fas fa-arrow-left"></i> Voltar para página inicial 
+            </button>                 
+            <div class="setor-card-detalhado"> 
+                <div class="setor-titulo-detalhado"> 
+                    <div class="icone-grande"> 
+                        <i class="fas fa-user-tie"></i> 
+                    </div>                         
+                    <div> 
+                        <h1>Coordenação de Gabinete</h1> 
+                        <p>Diretor Geral: José Williams</p> 
+                    </div>                         
+                </div>                     
+                <div class="setor-info"> 
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-user"></i> Osmar Viveiros de Carvalho</h4> 
+                        <p><strong>Presencial:</strong><br> 
+                        Seg: 14h às 20h<br> 
+                        Ter a Qui: 9h às 15h<br> 
+                        Sex: 8h às 14h</p> 
+                        <p><strong>Remoto:</strong><br> 
+                        Seg: 9h às 11h<br> 
+                        Ter a Sex: 18h às 20h</p> 
+                        <div class="contato-botoes-mini">
+                            <a href="https://wa.me/55879991502811" class="contato-btn-mini whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                        </div>
+                    </div>                         
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-tasks"></i> O que faz</h4> 
+                        <ul> 
+                            <li><i class="fas fa-check"></i> Assessorar a Direção nas atividades administrativas</li> 
+                            <li><i class="fas fa-check"></i> Organizar e acompanhar documentos e processos institucionais</li> 
+                            <li><i class="fas fa-check"></i> Auxiliar na comunicação oficial do campus</li> 
+                            <li><i class="fas fa-check"></i> Apoiar eventos, reuniões e ações institucionais</li> 
+                        </ul> 
+                    </div>                         
+                </div>                     
+            </div>                 
+        </div>             
+    </div>         
+    
+    <!-- SETOR 14: SAE - Setor de Assistência ao Educando -->         
+    <div id="setor-sae" class="setor-container"> 
+        <div class="container"> 
+            <button class="voltar-home" id="voltarInicio14"> 
+                <i class="fas fa-arrow-left"></i> Voltar para página inicial 
+            </button>                 
+            <div class="setor-card-detalhado"> 
+                <div class="setor-titulo-detalhado"> 
+                    <div class="icone-grande"> 
+                        <i class="fas fa-hands-helping"></i> 
+                    </div>                         
+                    <div> 
+                        <h1>SAE - Assistência ao Educando</h1> 
+                        <p>Setor de Assistência ao Educando</p> 
+                    </div>                         
+                </div>                     
+                <div class="setor-info"> 
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-user"></i> Elson</h4> 
+                        <p>Seg a Sex: 7h às 13h</p> 
+                    </div>                         
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-user"></i> Samuel</h4> 
+                        <p>Seg a Sex: 10h às 16h</p> 
+                    </div>                         
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-user"></i> Josevaldo</h4> 
+                        <p>Seg a Sex: 16h às 22h</p> 
+                    </div>                         
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-tasks"></i> O que faz</h4> 
+                        <ul> 
+                            <li><i class="fas fa-check"></i> Distribuição de fichas de almoço e lanche para os alunos</li> 
+                            <li><i class="fas fa-check"></i> Disponibilizar materiais de aula aos professores quando necessário</li> 
+                            <li><i class="fas fa-check"></i> Controlar o uso do data show de cada sala</li> 
+                            <li><i class="fas fa-check"></i> Controlar o uso do ar-condicionado das salas</li> 
+                            <li><i class="fas fa-check"></i> Entregar chaves de setores, mediante autorização</li> 
+                        </ul> 
+                    </div>                         
+                </div>                     
+            </div>                 
+        </div>             
+    </div>         
+    
+    <!-- SETOR 15: Repografia -->         
+    <div id="setor-reprografia" class="setor-container"> 
+        <div class="container"> 
+            <button class="voltar-home" id="voltarInicio15"> 
+                <i class="fas fa-arrow-left"></i> Voltar para página inicial 
+            </button>                 
+            <div class="setor-card-detalhado"> 
+                <div class="setor-titulo-detalhado"> 
+                    <div class="icone-grande"> 
+                        <i class="fas fa-print"></i> 
+                    </div>                         
+                    <div> 
+                        <h1>Repografia</h1> 
+                        <p>Impressões e Cópias</p> 
+                    </div>                         
+                </div>                     
+                <div class="setor-info"> 
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-user"></i> Joyce Nogueira</h4> 
+                        <p><strong>Seg a Qui:</strong> 7h às 12h | 13h às 17h<br> 
+                        <strong>Sexta:</strong> 7h às 12h | 13h às 16h</p> 
+                    </div>                         
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-tasks"></i> O que faz</h4> 
+                        <ul> 
+                            <li><i class="fas fa-check"></i> Realizar impressões de atividades escolares</li> 
+                            <li><i class="fas fa-check"></i> Imprimir provas e avaliações</li> 
+                            <li><i class="fas fa-check"></i> Produzir termos, comunicados e documentos institucionais</li> 
+                            <li><i class="fas fa-check"></i> Atender às demandas de impressão dos setores</li> 
+                        </ul> 
+                    </div>                         
+                </div>                     
+            </div>                 
+        </div>             
+    </div>         
+    
+    <!-- SETOR 16: Sala de Técnicos -->         
+    <div id="setor-tecnicos" class="setor-container"> 
+        <div class="container"> 
+            <button class="voltar-home" id="voltarInicio16"> 
+                <i class="fas fa-arrow-left"></i> Voltar para página inicial 
+            </button>                 
+            <div class="setor-card-detalhado"> 
+                <div class="setor-titulo-detalhado"> 
+                    <div class="icone-grande"> 
+                        <i class="fas fa-flask"></i> 
+                    </div>                         
+                    <div> 
+                        <h1>Sala de Técnicos</h1> 
+                        <p>Suporte a Laboratórios</p> 
+                    </div>                         
+                </div>                     
+                <div class="setor-info"> 
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-user"></i> Ednaia Deodato Nunes</h4> 
+                        <p>Técnica em Laboratório (Química)</p> 
+                        <p>Seg: 13h-17h | 18h-22h<br> 
+                        Ter: 8h-12h<br> 
+                        Qua: 8h-12h | 13h-17h</p> 
+                    </div>                         
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-user"></i> Ianne Batista Nogueira</h4> 
+                        <p>Técnica em Laboratório (Química)</p> 
+                        <p>Qua: 10h-12h | 13h-19h<br> 
+                        Qui: 7h-12h | 13h-16h<br> 
+                        Sex: 7h-12h | 13h-16h</p> 
+                    </div>                         
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-user"></i> Jorge Murilo Brasil Palma</h4> 
+                        <p>Engenheiro Agrônomo</p> 
+                        <p>Seg: 12h-17h (teletrabalho)<br> 
+                        Ter/Qua: 8h-12h | 13h-17h</p> 
+                    </div>                         
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-user"></i> Marizania Sena Pereira</h4> 
+                        <p>Técnica de Laboratório (Agroindústria)</p> 
+                        <p>Ter a Qui: 8h-12h | 13h-17h<br> 
+                        Sex: 8h-12h | 13h-16h</p> 
+                    </div>                         
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-tasks"></i> O que faz</h4> 
+                        <ul> 
+                            <li><i class="fas fa-check"></i> Suporte às aulas práticas e laboratoriais</li> 
+                            <li><i class="fas fa-check"></i> Organização de materiais e equipamentos</li> 
+                            <li><i class="fas fa-check"></i> Auxílio a professores em atividades técnicas</li> 
+                            <li><i class="fas fa-check"></i> Apoio às unidades produtivas e laboratórios</li> 
+                        </ul> 
+                    </div>                         
+                </div>                     
+            </div>                 
+        </div>             
+    </div>         
+    
+    <!-- SETOR 17: CCEV - Coordenação de Comunicação e Eventos -->         
+    <div id="setor-ccev" class="setor-container"> 
+        <div class="container"> 
+            <button class="voltar-home" id="voltarInicio17"> 
+                <i class="fas fa-arrow-left"></i> Voltar para página inicial 
+            </button>                 
+            <div class="setor-card-detalhado"> 
+                <div class="setor-titulo-detalhado"> 
+                    <div class="icone-grande"> 
+                        <i class="fas fa-bullhorn"></i> 
+                    </div>                         
+                    <div> 
+                        <h1>CCEV - Comunicação e Eventos</h1> 
+                        <p>Coordenação de Comunicação e Eventos</p> 
+                    </div>                         
+                </div>                     
+                <div class="setor-info"> 
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-user"></i> Judson Medeiros Alves</h4> 
+                        <p>Servidor Responsável</p> 
+                    </div>                         
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-tasks"></i> O que faz</h4> 
+                        <ul> 
+                            <li><i class="fas fa-check"></i> Planejar e organizar eventos institucionais</li> 
+                            <li><i class="fas fa-check"></i> Realizar a divulgação de ações e comunicados oficiais</li> 
+                            <li><i class="fas fa-check"></i> Produzir materiais gráficos e conteúdos</li> 
+                            <li><i class="fas fa-check"></i> Apoiar setores na organização de cerimônias e eventos</li> 
+                        </ul> 
+                    </div>                         
+                </div>                     
+            </div>                 
+        </div>             
+    </div>         
+    
+    <!-- SETOR 18: Coordenações de Cursos -->         
+    <div id="setor-coordenacoes" class="setor-container"> 
+        <div class="container"> 
+            <button class="voltar-home" id="voltarInicio18"> 
+                <i class="fas fa-arrow-left"></i> Voltar para página inicial 
+            </button>                 
+            <div class="setor-card-detalhado"> 
+                <div class="setor-titulo-detalhado"> 
+                    <div class="icone-grande"> 
+                        <i class="fas fa-chalkboard"></i> 
+                    </div>                         
+                    <div> 
+                        <h1>Coordenações de Cursos</h1> 
+                        <p>EMI | SUB | PROEJA | Matemática | Química</p> 
+                    </div>                         
+                </div>                     
+                <div class="setor-info"> 
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-laptop"></i> Informática</h4> 
+                        <p><strong>Rodrigo Ferreira da Silva</strong><br> 
+                        <i class="fas fa-envelope"></i> rodrigo.silva@ifsertao-pe.edu.br</p> 
+                        <div class="contato-botoes-mini">
+                            <a href="https://wa.me/558192650606" class="contato-btn-mini whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                        </div>
+                    </div>                         
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-hard-hat"></i> Edificações</h4> 
+                        <p><strong>José Washington Gomes Coriolano</strong><br> 
+                        <i class="fas fa-envelope"></i> washington.coriolano@ifsertao-pe.edu.br</p> 
+                        <div class="contato-botoes-mini">
+                            <a href="https://wa.me/558791863974" class="contato-btn-mini whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                        </div>
+                    </div>                         
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-seedling"></i> Agropecuária</h4> 
+                        <p><strong>Rejane Rodrigues de Oliveira</strong><br> 
+                        <i class="fas fa-envelope"></i> rejane.oliveira@ifsertao-pe.edu.br</p> 
+                        <div class="contato-botoes-mini">
+                            <a href="https://wa.me/55879999341697" class="contato-btn-mini whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                        </div>
+                    </div>                         
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-industry"></i> Agroindústria</h4> 
+                        <p><strong>Joice Simone dos Santos</strong><br> 
+                        <i class="fas fa-envelope"></i> joice.simone@ifsertao-pe.edu.br</p> 
+                        <div class="contato-botoes-mini">
+                            <a href="https://wa.me/558788223978" class="contato-btn-mini whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                        </div>
+                    </div>                         
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-calculator"></i> Matemática</h4> 
+                        <p><strong>Jairo Carlos de Oliveira Quintans</strong> - Coordenador<br> 
+                        <i class="fas fa-envelope"></i> jairo.oliveira@ifsertao-pe.edu.br</p> 
+                        <div class="contato-botoes-mini">
+                            <a href="https://wa.me/558796235566" class="contato-btn-mini whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                        </div>
+                        <p><strong>Antônio Rennan Sales</strong> - Vice-Coordenador<br> 
+                        <i class="fas fa-envelope"></i> rennan.sales@ifsertao-pe.edu.br</p> 
+                        <div class="contato-botoes-mini">
+                            <a href="https://wa.me/558892121602" class="contato-btn-mini whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                        </div>
+                    </div>                         
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-flask"></i> Química</h4> 
+                        <p><strong>Renato César da Silva</strong> - Coordenador<br> 
+                        <i class="fas fa-envelope"></i> renato.cesar@ifsertao-pe.edu.br</p> 
+                        <div class="contato-botoes-mini">
+                            <a href="https://wa.me/558199569326" class="contato-btn-mini whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                        </div>
+                        <p><strong>Aline Novais</strong> - Professora colaboradora</p> 
+                    </div>                         
+                </div>                     
+            </div>                 
+        </div>             
+    </div>         
+    
+    <!-- SETOR 19: Biblioteca -->         
+    <div id="setor-biblioteca" class="setor-container"> 
+        <div class="container"> 
+            <button class="voltar-home" id="voltarInicio19"> 
+                <i class="fas fa-arrow-left"></i> Voltar para página inicial 
+            </button>                 
+            <div class="setor-card-detalhado"> 
+                <div class="setor-titulo-detalhado"> 
+                    <div class="icone-grande"> 
+                        <i class="fas fa-book"></i> 
+                    </div>                         
+                    <div> 
+                        <h1>Biblioteca</h1> 
+                        <p>Suporte informacional às atividades de ensino, pesquisa e extensão</p> 
+                    </div>                         
+                </div>                     
+                <div class="setor-info"> 
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-clock"></i> Horário de Funcionamento</h4> 
+                        <p>Confira os horários dos servidores abaixo</p> 
+                    </div>                         
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-user"></i> Afonso - Assistente Administrativo</h4> 
+                        <p><strong>Modalidade:</strong> Presencial</p> 
+                        <p>Segunda: 11h às 17h<br> 
+                        Terça: 15h às 21h<br> 
+                        Quarta: 8h às 14h<br> 
+                        Quinta: 15h às 21h<br> 
+                        Sexta: 11h às 17h</p> 
+                    </div>                         
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-user"></i> Geancarlo - Auxiliar de Biblioteca</h4> 
+                        <p><strong>Modalidade:</strong> Presencial</p> 
+                        <p>Segunda: 8h às 14h<br> 
+                        Terça: 12h30 às 18h30<br> 
+                        Quarta: 12h30 às 18h30<br> 
+                        Quinta: 12h às 18h<br> 
+                        Sexta: 15h às 21h</p> 
+                    </div>                         
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-user"></i> Kátia Bruna - Auxiliar de Biblioteca</h4> 
+                        <p><strong>Modalidade:</strong> Teletrabalho Parcial</p> 
+                        <p>Quarta: 17h às 21h<br> 
+                        Quinta: 8h às 12h</p> 
+                    </div>                         
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-user"></i> Micaela - Auxiliar de Biblioteca</h4> 
+                        <p><strong>Modalidade:</strong> Presencial</p> 
+                        <p>Segunda: 15h às 21h<br> 
+                        Terça: 8h às 14h<br> 
+                        Quarta: 13h às 19h<br> 
+                        Quinta: 13h às 19h<br> 
+                        Sexta: 8h às 14h</p> 
+                    </div>                         
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-tasks"></i> O que a Biblioteca faz?</h4> 
+                        <ul> 
+                            <li><i class="fas fa-check"></i> Disponibilizar livros, periódicos e outros materiais informacionais</li> 
+                            <li><i class="fas fa-check"></i> Realizar empréstimos, devoluções e renovação de materiais do acervo</li> 
+                            <li><i class="fas fa-check"></i> Auxiliar estudantes e servidores na busca por informações acadêmicas</li> 
+                            <li><i class="fas fa-check"></i> Oferecer espaço adequado para estudo individual e em grupo</li> 
+                            <li><i class="fas fa-check"></i> Apoiar atividades de ensino, pesquisa e extensão da instituição</li> 
+                            <li><i class="fas fa-check"></i> Contribuir para a formação acadêmica e desenvolvimento intelectual da comunidade acadêmica</li> 
+                        </ul> 
+                        <p style="margin-top: 15px;">A Biblioteca atua como um espaço fundamental de apoio ao aprendizado, incentivando a leitura, a pesquisa e o acesso ao conhecimento dentro da instituição.</p> 
+                    </div>                         
+                </div>                     
+            </div>                 
+        </div>             
+    </div>         
+    
+    <!-- SETOR 20: Ônibus Escolar -->         
+    <div id="setor-onibus" class="setor-container"> 
+        <div class="container"> 
+            <button class="voltar-home" id="voltarInicio20"> 
+                <i class="fas fa-arrow-left"></i> Voltar para página inicial 
+            </button>                 
+            <div class="setor-card-detalhado"> 
+                <div class="setor-titulo-detalhado"> 
+                    <div class="icone-grande"> 
+                        <i class="fas fa-bus"></i> 
+                    </div>                         
+                    <div> 
+                        <h1>Ônibus Escolar</h1> 
+                        <p>Transporte escolar - IF Ouricuri</p> 
+                    </div>                         
+                </div>                     
+                <div class="setor-info"> 
+                    <div class="info-item"> 
+                        <h4><i class="fas fa-clock"></i> Horários e Itinerários</h4> 
+                        
+                        <h4 style="color: var(--verde-floresta); margin-top: 20px;">Manhã (Ida para o IF)</h4> 
+                        <p><strong>Saída:</strong> 06h30 – Praça do Céu</p> 
+                        <p><strong>Percurso:</strong><br> 
+                        Praça do Céu → Raul Lins → Dom Idílio → Praça Frei Damião → Alto Paraíso → Honda → Bar de Geraldão → Casinhas → Hotel Plaza → Americanas → Posto Sena II → <strong>IF Ouricuri</strong></p> 
+                        <div class="destaque"> 
+                            <i class="fas fa-info-circle"></i> O ônibus também para para qualquer aluno fardado que estiver no trajeto. 
+                        </div> 
+                        
+                        <h4 style="color: var(--verde-floresta); margin-top: 20px;">Tarde (Volta para a cidade)</h4> 
+                        <p><strong>Saída:</strong> 12h00 – IF Ouricuri</p> 
+                        <p><strong>Percurso (mesma rota da ida):</strong><br> 
+                        IF Ouricuri → Posto Sena II → Americanas → Hotel Plaza → Casinhas → Bar de Geraldão → Honda → Alto Paraíso → Praça Frei Damião → Dom Idílio → Raul Lins → <strong>Praça do Céu</strong></p> 
+                        <div class="destaque"> 
+                            <i class="fas fa-info-circle"></i> Também para para alunos fardados ao longo do caminho. 
+                        </div> 
+                        
+                        <h4 style="color: var(--verde-floresta); margin-top: 20px;">Noite (Ida para o IF)</h4> 
+                        <p><strong>Percurso:</strong><br> 
+                        Praça do Céu → Raul Lins → Rádio Voluntários → Praça Frei Damião → Farmácia Pereira → Nosso Posto (se houver estudante) → Padaria de Novinho → <strong>IF Ouricuri</strong></p> 
+                        <div class="destaque"> 
+                            <i class="fas fa-info-circle"></i> O ônibus pega estudantes nesses pontos e também pode parar para alunos fardados ao longo do trajeto. 
+                        </div> 
+                        
+                        <div style="margin-top: 30px; text-align: center;"> 
+                            <h4><i class="fab fa-whatsapp"></i> Acompanhe o ônibus em tempo real</h4> 
+                            <p>Sr.Mazim sempre manda a localização em tempo real quando o ônibus está em rota.</p> 
+                            <a href="https://chat.whatsapp.com/HgCTHT5G6eP3tqYfNLlGy1?mode=gi_t" target="_blank" class="contato-btn whatsapp" style="display: inline-flex; padding: 15px 30px; font-size: 1.1rem;"> 
+                                <i class="fab fa-whatsapp"></i> Entrar no grupo do WhatsApp 
+                            </a> 
+                        </div> 
+                    </div>                         
+                </div>                     
+            </div>                 
+        </div>             
+    </div>         
+    
+    <!-- Footer -->         
+    <footer> 
+        <div class="footer-content"> 
+            <div class="footer-section"> 
+                <h3>Manual do Aluno</h3> 
+                <p>Seu guia completo para navegar pelo IF Sertão-PE!</p>  
+            </div>                     
+            <div class="footer-section"> 
+                <h3>Links Rápidos</h3> 
+                <a href="#" id="abrirMenuFooter"><i class="fas fa-bars"></i> Menu de setores</a> 
+                <a href="#" id="footerHome"><i class="fas fa-home"></i> Início</a> 
+            </div>                     
+            <div class="footer-section"> 
+                <h3>IF Sertão-PE</h3> 
+                <a href="https://ifsertaope.edu.br/ouricuri/" target="_blank"><i class="fas fa-globe"></i> Site oficial</a> 
+                <a href="https://www.instagram.com/ifsertaope.ouricuri?igsh=OW9lYTkyMXZ3YTM0" target="_blank"><i class="fab fa-instagram"></i> @ifsertaope.ouricuri</a> 
+            </div>                     
+        </div>                 
+        <div class="copyright"> 
+            <p>&copy; 2026 Manual do Aluno - IF Sertão-PE</p> 
+            <p>Desenvolvido para facilitar sua jornada acadêmica</p> 
+        </div>                 
+    </footer>         
+    
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const menuToggle = document.getElementById('menuToggle');
+        const menuLateral = document.getElementById('menuLateral');
+        const overlay = document.getElementById('overlay');
+        const paginaInicial = document.getElementById('paginaInicial');
+        const setores = document.querySelectorAll('.setor-container');
+        const logoHome = document.getElementById('logoHome');
+        const footerHome = document.getElementById('footerHome');
+        
+        function toggleMenu() {
+            menuToggle.classList.toggle('ativo');
+            menuLateral.classList.toggle('ativo');
+            overlay.classList.toggle('ativo');
+            document.body.style.overflow = menuLateral.classList.contains('ativo') ? 'hidden' : 'auto';
+        }
+        
+        menuToggle.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', toggleMenu);
+        
+        function mostrarInicio() {
+            paginaInicial.style.display = 'block';
+            setores.forEach(setor => {
+                setor.classList.remove('ativo');
+            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            if (menuLateral.classList.contains('ativo')) toggleMenu();
+        }
+        
+        function mostrarSetor(setorId) {
+            paginaInicial.style.display = 'none';
+            setores.forEach(setor => {
+                setor.classList.remove('ativo');
+            });
+            document.getElementById(setorId).classList.add('ativo');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            if (menuLateral.classList.contains('ativo')) toggleMenu();
+        }
+        
+        document.querySelectorAll('.setor-menu').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const setor = this.getAttribute('data-setor');
+                if (setor === 'inicio') {
+                    mostrarInicio();
+                } else {
+                    mostrarSetor('setor-' + setor);
+                }
+            });
+        });
+        
+        document.querySelectorAll('.setor-home-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const setor = this.getAttribute('data-setor');
+                mostrarSetor('setor-' + setor);
+            });
+        });
+        
+        // Card do ônibus na seção de informações importantes
+        document.querySelectorAll('.destaque-card[data-setor="onibus"]').forEach(card => {
+            card.addEventListener('click', function() {
+                const setor = this.getAttribute('data-setor');
+                mostrarSetor('setor-' + setor);
+            });
+        });
+        
+        // FAQ - Sistema de Acordeão
+        const faqPerguntas = document.querySelectorAll('.faq-pergunta');
+        
+        faqPerguntas.forEach(pergunta => {
+            pergunta.addEventListener('click', function() {
+                const resposta = this.nextElementSibling;
+                
+                this.classList.toggle('ativo');
+                
+                if (resposta.classList.contains('ativo')) {
+                    resposta.classList.remove('ativo');
+                } else {
+                    resposta.classList.add('ativo');
+                }
+            });
+        });
+        
+        document.querySelectorAll('[id^="voltarInicio"]').forEach(btn => {
+            btn.addEventListener('click', mostrarInicio);
+        });
+        
+        logoHome.addEventListener('click', mostrarInicio);
+        footerHome.addEventListener('click', function(e) {
+            e.preventDefault();
+            mostrarInicio();
+        });
+        
+        document.getElementById('abrirMenuFooter').addEventListener('click', function(e) {
+            e.preventDefault();
+            if (!menuLateral.classList.contains('ativo')) {
+                toggleMenu();
+            }
+        });
+        
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && menuLateral.classList.contains('ativo')) {
+                toggleMenu();
+            }
+        });
+    });
+    </script>         
+</body>     
+</html>
